@@ -1,0 +1,39 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">赛队信息</label>
+            <div class="layui-input-block">
+                <span><img class="group-table-td-i" src="{$row->ball_logo}" /> {$row->ball_name} &nbsp;&nbsp; {$row->group_name}组</span>
+            </div>
+        </div>
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label">小组排名</label>
+            <div class="layui-input-block">
+            	<input type="text" class="layui-input width-input10" lay-verify="required" placeholder="比赛时间" value="{$row.match_rank|default=''}" >
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">积分统计</label>
+            <div class="layui-input-block">
+                赛:
+                <input type="text" name="home_let_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_count|default=''}" />
+                胜:
+                <input type="text" name="home_let_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_won|default=''}" />
+                平:
+                <input type="text" name="home_let_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_got|default=''}" />
+                负:
+                <input type="text" name="home_size_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_lost|default=''}" />
+            </div>
+        </div>
+
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>

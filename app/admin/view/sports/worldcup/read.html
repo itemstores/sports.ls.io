@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="//layui.ulthon.com/cdn/layui-ul.css">
+<div class="layuimini-container">
+
+    <div class="layui-row">
+        <div class="layui-col-md8 layui-col-md-offset2 layui-col-lg6 layui-col-lg-offset3">
+            <div class="ul-descriptions border">
+                <div class="item">
+                    <div class="label">
+                        小组
+                    </div>
+                    <div class="value">
+                        {$row->group_name}
+                    </div>
+                </div>
+                <div class="item short-line">
+                    <div class="label">
+                        比赛时间
+                    </div>
+                    <div class="value">
+                        {$row->match_time}
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="label">
+                        比赛状态
+                    </div>
+                    <div class="value">
+	                    {if $row->match_state == 1}
+	                    	<a class="layui-btn layui-btn-xs layui-btn-success">进行中</a>
+	                    {elseif $row->match_state == 2 /}
+	                    	<a class="layui-btn layui-btn-xs layui-btn-danger">已结束</a>
+	                    {else /}
+	                    	<a class="layui-btn layui-btn-xs layui-btn-normal">未开始</a>
+	                    {/if}
+                    </div>
+                </div>
+                <div class="item  short-line">
+                    <div class="label">
+                        开盘状态
+                    </div>
+                    <div class="value">
+	                    {if $row->open_state == 1}
+	                    	<a class="layui-btn layui-btn-xs layui-btn-success">赛前盘</a>
+	                    {elseif $row->open_state == 2 /}
+	                    	<a class="layui-btn layui-btn-xs layui-btn-danger">已关盘</a>
+	                    {else /}
+	                    	<a class="layui-btn layui-btn-xs layui-btn-normal">未开盘</a>
+	                    {/if}
+                    </div>
+                </div>
+                <div class="item  article">
+                    <div class="label">
+                        主队
+                    </div>
+                    <div class="value">
+                        <img class="group-table-td-i" src="/static/index/images/worldcup/{$row->home_flag}.png" /> {$row->home_team} &nbsp;&nbsp;
+                        <a class="layui-btn layui-btn-xs layui-btn-primary">让分: <small>{$row->home_let_init}</small>&nbsp;&nbsp;<small>{$row->home_let_score}</small>&nbsp;&nbsp;赔率: <small>{$row->home_size_odds}</small></a>
+                        <a class="layui-btn layui-btn-xs layui-btn-primary">大小盘: <small>{$row->home_size_init}</small>&nbsp;&nbsp;<small>{$row->home_size_score}</small>&nbsp;&nbsp;赔率: <small>{$row->home_size_odds}</small></a>
+                    </div>
+                </div>
+                <div class="item  article">
+                    <div class="label">
+                        客队
+                    </div>
+                    <div class="value">
+                        <img class="group-table-td-i" src="/static/index/images/worldcup/{$row->away_flag}.png" /> {$row->away_team} &nbsp;&nbsp;
+                        <a class="layui-btn layui-btn-xs layui-btn-primary">让分: <small>{$row->away_let_init}</small>&nbsp;&nbsp;<small>{$row->away_let_score}</small>&nbsp;&nbsp;赔率: <small>{$row->away_size_odds}</small></a>
+                        <a class="layui-btn layui-btn-xs layui-btn-primary">大小盘: <small>{$row->away_size_init}</small>&nbsp;&nbsp;<small>{$row->away_size_score}</small>&nbsp;&nbsp;赔率: <small>{$row->away_size_odds}</small></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

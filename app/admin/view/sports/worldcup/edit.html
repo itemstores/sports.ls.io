@@ -1,0 +1,88 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+    
+    	<div class="layui-form-item">
+            <label class="layui-form-label">赛程小组</label>
+            <div class="layui-input-inline">
+            	<input type="text" class="layui-input" lay-verify="required" placeholder="比赛时间" value="{$row.group_name|default=''}" disabled="disabled">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">比赛时间</label>
+            <div class="layui-input-inline">
+            	<input type="text" name="match_time" class="layui-input" lay-verify="required" id="match_time" placeholder="比赛时间" value="{$row.match_time|default=''}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">主队信息</label>
+            <div class="layui-input-block">
+            	<span><img class="group-table-td-i" src="/static/index/images/worldcup/{$row->home_flag}.png" /> {$row->home_team} &nbsp;&nbsp;</span>
+                让分:
+                <input type="text" name="home_let_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_let_init|default=''}" />
+                <input type="text" name="home_let_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_let_score|default=''}" />
+                <input type="text" name="home_let_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_let_odds|default=''}" />&nbsp;&nbsp;&nbsp;&nbsp;
+                大小盘:
+                <input type="text" name="home_size_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_size_init|default=''}" />
+                <input type="text" name="home_size_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_size_score|default=''}" />
+                <input type="text" name="home_size_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_size_odds|default=''}" />
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客队信息</label>
+            <div class="layui-input-block">
+            	<span><img class="group-table-td-i" src="/static/index/images/worldcup/{$row->away_flag}.png" /> {$row->away_team} &nbsp;&nbsp;</span>
+                让分:
+                <input type="text" name="away_let_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_let_init|default=''}" />
+                <input type="text" name="away_let_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_let_score|default=''}" />
+                <input type="text" name="away_let_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_let_odds|default=''}" />&nbsp;&nbsp;&nbsp;&nbsp;
+                大小盘:
+                <input type="text" name="away_size_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_size_init|default=''}" />
+                <input type="text" name="away_size_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_size_score|default=''}" />
+                <input type="text" name="away_size_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_size_odds|default=''}" />
+            </div>
+        </div>
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label">赛程开关</label>
+            <div class="layui-input-block">
+                <input type="text" name="match_state" class="layui-input width-input10" lay-verify="required" placeholder="请输入1或2或3" value="{$row.match_state|default=''}"> <a class="layui-btn layui-btn-xs layui-btn-normal">0未开始</a><a class="layui-btn layui-btn-xs layui-btn-success">1进行中</a><a class="layui-btn layui-btn-xs layui-btn-danger">2已结束</a>
+            </div>
+        </div>
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label">盘口开关</label>
+            <div class="layui-input-block">
+                <input type="text" name="open_state" class="layui-input width-input10" lay-verify="required" placeholder="请输入1或2或3" value="{$row.open_state|default=''}"> <a class="layui-btn layui-btn-xs layui-btn-normal">0未开盘</a><a class="layui-btn layui-btn-xs layui-btn-success">1进行中</a><a class="layui-btn layui-btn-xs layui-btn-danger">2已关盘</a>
+            </div>
+        </div>
+
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>
+
+<script type="text/javascript">
+    layui.use([ 'laydate'], function(){
+        var $ = layui.$;
+        var laydate = layui.laydate;
+        var nowTime = new Date().valueOf();
+        var max = null;
+
+        var start = laydate.render({
+            elem: '#match_time',
+            type: 'datetime',
+            format:'yyyy-MM-dd HH:mm:ss',
+            btns: ['clear', 'confirm'],
+            done: function(value, date){
+				//
+            }
+        });
+    })
+</script>

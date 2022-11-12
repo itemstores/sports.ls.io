@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)http://m.titan007.com/worldcup -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LS8 卡塔尔世界杯</title>
+<meta name="keywords" content="世界杯,足球比赛,世界杯直播,比分预测,竞彩分析,LS8体育网">
+<meta name="description"
+	content="LS8体育网提供全球足球,篮球赛事比分,权威竞彩足球,篮球分析预测,世界杯即时比分直播,现场同步足球直播,手机看比分首选LS8体育比分">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/static/index/js/worldcup/hm.js"></script>
+<script type="text/javascript"
+	src="/static/index/js/worldcup/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/static/index/js/worldcup/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript"
+	src="/static/index/js/worldcup/worldcupCarousel.js"></script>
+<link rel="stylesheet" href="/static/index/css/worldcup/main.css">
+<link rel="stylesheet"
+	href="/static/index/css/worldcup/worldcup.css?v={$version}">
+<script type="text/javascript"
+	src="/static/index/js/worldcup/BomHelper.js"></script>
+<script type="text/javascript"
+	src="/static/index/js/worldcup/worldcup.js?v={$version}"></script>
+<script type="text/javascript" src="/static/index/js/worldcup/BaSID.js"></script>
+<script type="text/javascript"
+	src="/static/index/js/worldcup/touchAD.js"></script>
+<link rel="stylesheet" href="/static/index/css/worldcup/com.css?v={$version}">
+<script type="text/javascript"
+	src="/static/index/js/worldcup/less.min.js"></script>
+<script type="text/javascript">
+        var top_hideUser = true;
+    </script>
+
+</head>
+<body>
+	<header id="header">
+		<div class="header">
+			<!-- <a class="back" href=""><img src="/static/index/images/worldcup/fifa-world-cup.png"  class="group-table-td-i"></a> -->
+			<div class="head-title">
+				<span>2022卡塔尔世界杯</span>
+             	<p>11月20日-12月18日</p>
+			</div>
+			<img src="/static/index/images/worldcup/fifa-world-cup-font.png"  class="head-logo"> 
+		</div>
+	</header>
+	<div id="content">
+		<!--小组积分 begin-->
+		<div class="worldcup-top-title">
+			<h2>赛程</h2>
+ 			<div class="worldcup-top-menu"  id="lang-menu"  onclick="ShowLanguage()">
+				<span onclick="" class="zz language-span">中文 <em class="lan-arrow"></em> </span>
+				<ul class="language-list" id="language-list">
+					<li onclick="window.location=document.location.protocol + '//' + document.location.host">中文</li>
+					<li onclick="window.location=document.location.protocol + '//' + document.location.host+'/worldcup'">英文</li>
+				</ul>
+			</div>
+		</div>
+		<nav class="subMenu" id="GroupSubMenu">
+			<a href="javascript:void(0)" class="on"
+				onclick="SelectGroupSubMenu(0,&#39;分组赛&#39;)">小组赛</a> <a
+				href="javascript:void(0)"
+				onclick="SelectGroupSubMenu(1,&#39;16强&#39;)" class="">16强</a> <a
+				href="javascript:void(0)"
+				onclick="SelectGroupSubMenu(2,&#39;8强&#39;)" class="">8强</a> <a
+				href="javascript:void(0)"
+				onclick="SelectGroupSubMenu(3,&#39;准决赛&#39;)" class="">准决赛</a> <a
+				href="javascript:void(0)"
+				onclick="SelectGroupSubMenu(4,&#39;决赛&#39;)" class="">决赛</a>
+		</nav>
+		
+		<!--end 小组积分-->
+		<div id="GroupContainer" >
+			<div class="leagueItems">
+				<ul>
+					<li id="group_btn0" class="on" onclick="SelectWCGroup(0)"><span>A组</span>
+					</li>
+					<li id="group_btn1" class="" onclick="SelectWCGroup(1)"><span>B组</span>
+					</li>
+					<li id="group_btn2" class="" onclick="SelectWCGroup(2)"><span>C组</span>
+					</li>
+					<li id="group_btn3" class="" onclick="SelectWCGroup(3)"><span>D组</span>
+					</li>
+					<li id="group_btn4" class="" onclick="SelectWCGroup(4)"><span>E组</span>
+					</li>
+					<li id="group_btn5" class="" onclick="SelectWCGroup(5)"><span>F组</span>
+					</li>
+					<li id="group_btn6" class="" onclick="SelectWCGroup(6)"><span>G组</span>
+					</li>
+					<li id="group_btn7" class="" onclick="SelectWCGroup(7)"><span>H组</span>
+					</li>
+				</ul>
+			</div>
+			
+			{volist name="ball" key="k" id="vo"}
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"
+				id="group_table{$k-1}" class="g-tr" {if $k == 1} style="" {else} style="display: none" {/if} >
+				<tbody>
+					<tr>
+						<th width="10%">排名</th>
+						<th class="lleft">球队</th>
+						<th width="10%">赛</th>
+						<th width="10%">胜</th>
+						<th width="10%">平</th>
+						<th width="10%">负</th>
+					</tr>
+					{foreach $vo as $i=>$val}
+					<tr>
+						<td>{$val.match_rank}</td>
+						<td class="lleft" ><i><img src="{$val.ball_logo}"  class="group-table-td-i"></i> {$val.ball_name}</td>
+						<td><span class="saihit">{$val.match_count}</span></td>
+						<td><span class="saihit">{$val.match_won}</span></td>
+						<td><span class="saihit">{$val.match_got}</span></td>
+						<td><span class="saihit">{$val.match_lost}</span></td>
+					</tr>
+					{/foreach}
+				</tbody>
+			</table>
+			{/volist}
+			<!--end 小组积分-->
+		</div>
+
+		<div class="matchList" id="MatchContainer"></div>
+		<div id="vsContainer" style="display: none;">
+
+		</div>
+	</div>
+	<div id="footer">
+		<!-- <a class="blue3" href="http://www.titan007.com/?from=m">电脑版</a> -->
+		&nbsp;
+		<script type="text/javascript">
+        //if (CheckHzPrefix() != "")
+        //    document.write("<a class='blue' href=''>客户端下载(功能全、体验好)</a>");
+        //else {
+        //    document.write("<a class='blue' href=''>客户端下载(功能全、体验好)</a>");
+        //} 
+        //document.write("<a class='blue' href=''>客户端下载(功能全、体验好)</a>");
+    </script>
+		<a class="blue" href="javascript;"> LS8 尊享世界杯盛宴 </a>
+		<br>
+		<script type="text/javascript">
+        document.write("Copyright © " + new Date().getFullYear() + " LS8 版权所有")
+    </script>
+		<!-- Copyright © 2022 LS8体育版权所有 -->
+
+		<script type="text/javascript">
+        //document.write("<a href='' class='blue' target='_blank'>隐私政策</a>");
+        //document.write("<a href='" + CheckHzPrefix() + "/Common/GuangGao.shtml' class='blue'>广告声明</a>");
+        //document.write("<a href='' class='blue'>导航</a>");
+    </script>
+		<!-- <a href="" class="blue" target="_blank">隐私政策</a><a href="" class="blue">导航</a> -->
+	</div>
+
+	<input type="hidden" name="worldcupList" id="worldcupList" value="{$worldcup}" />
+
+	<script>
+    var rf = getUrlParam("app");
+    if (rf != null && rf == "1") {        
+        document.getElementById("header").style.display = "none";
+        document.getElementById("footer").style.display = "none";
+    }
+    var selGroupIndex=0;
+    var selGroupSubMenu=0;
+    var thisServerTime="20221105112748";
+    //var scheArr=[['2185072','0','2022,11,20,23,59,00','','分组赛^A','904','卡塔尔(我是原始数据)','779','厄瓜多尔','0','0','0','0','0','0','0','0','','','../../image/team/images/165018957264.png','../../image/team/images/165018888622.png','-0.25',''],['2185076','0','2022,11,21,21,00,00','','分组赛^B','744','英格兰','783','伊朗','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983421453.png','http://zq.titan007.com/Image/team/images/165018993893.png','1.25',''],['2185073','0','2022,11,21,23,59,00','','分组赛^A','815','塞内加尔','646','荷兰','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018850327.png','http://zq.titan007.com/Image/team/images/16498334962.png','-0.75',''],['2185339','0','2022,11,22,03,00,00','','分组赛^B','797','美国','7384','威尔士','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165102965258.png','http://zq.titan007.com/Image/team/images/164984044545.png','0',''],['2185082','0','2022,11,22,18,00,00','','分组赛^C','766','阿根廷','891','沙特阿拉伯','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018869978.png','http://zq.titan007.com/Image/team/images/165018978353.png','1.75',''],['2185086','0','2022,11,22,21,00,00','','分组赛^D','638','丹麦','823','突尼斯','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983780989.png','http://zq.titan007.com/Image/team/images/165018860211.png','1',''],['2185081','0','2022,11,22,23,59,00','','分组赛^C','819','墨西哥','637','波兰','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018908829.png','http://zq.titan007.com/Image/team/images/164983601624.png','0',''],['2185350','0','2022,11,23,03,00,00','','分组赛^D','649','法国','913','澳大利亚','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983446440.png','http://zq.titan007.com/Image/team/images/165018939680.png','1.75',''],['2185095','0','2022,11,23,18,00,00','','分组赛^F','813','摩洛哥','768','克罗地亚','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018837927.png','http://zq.titan007.com/Image/team/images/164983770149.png','-0.5',''],['2185089','0','2022,11,23,21,00,00','','分组赛^E','650','德国','903','日本','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983677229.png','http://zq.titan007.com/Image/team/images/165018976923.png','1.25',''],['2185357','0','2022,11,23,23,59,00','','分组赛^E','772','西班牙','914','哥斯达黎加','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983321668.png','http://zq.titan007.com/Image/team/images/165018897898.png','1.5',''],['2185094','0','2022,11,24,03,00,00','','分组赛^F','645','比利时','795','加拿大','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/166666252074.png','http://zq.titan007.com/Image/team/images/165018903917.png','1.5',''],['2185101','0','2022,11,24,18,00,00','','分组赛^G','648','瑞士','793','喀麦隆','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983533378.png','http://zq.titan007.com/Image/team/images/165018812726.png','0.5',''],['2185107','0','2022,11,24,21,00,00','','分组赛^H','767','乌拉圭','898','韩国','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018929859.png','http://zq.titan007.com/Image/team/images/164974972753.png','0.75',''],['2185106','0','2022,11,24,23,59,00','','分组赛^H','765','葡萄牙','810','加纳','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983333830.png','http://zq.titan007.com/Image/team/images/165018802248.png','1',''],['2185100','0','2022,11,25,03,00,00','','分组赛^G','778','巴西','642','塞尔维亚','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018879430.png','http://zq.titan007.com/Image/team/images/16498373919.png','1',''],['2185340','0','2022,11,25,18,00,00','','分组赛^B','7384','威尔士','783','伊朗','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164984044545.png','http://zq.titan007.com/Image/team/images/165018993893.png','0.25',''],['2185071','0','2022,11,25,21,00,00','','分组赛^A','904','卡塔尔','815','塞内加尔','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018957264.png','http://zq.titan007.com/Image/team/images/165018850327.png','-0.5',''],['2185070','0','2022,11,25,23,59,00','','分组赛^A','646','荷兰','779','厄瓜多尔','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/16498334962.png','http://zq.titan007.com/Image/team/images/165018888622.png','0.75',''],['2185075','0','2022,11,26,03,00,00','','分组赛^B','744','英格兰','797','美国','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983421453.png','http://zq.titan007.com/Image/team/images/165102965258.png','0.75',''],['2185351','0','2022,11,26,18,00,00','','分组赛^D','823','突尼斯','913','澳大利亚','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018860211.png','http://zq.titan007.com/Image/team/images/165018939680.png','0',''],['2185080','0','2022,11,26,21,00,00','','分组赛^C','637','波兰','891','沙特阿拉伯','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983601624.png','http://zq.titan007.com/Image/team/images/165018978353.png','0.75',''],['2185085','0','2022,11,26,23,59,00','','分组赛^D','649','法国','638','丹麦','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983446440.png','http://zq.titan007.com/Image/team/images/164983780989.png','0.5',''],['2185079','0','2022,11,27,03,00,00','','分组赛^C','766','阿根廷','819','墨西哥','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018869978.png','http://zq.titan007.com/Image/team/images/165018908829.png','0.75',''],['2185359','0','2022,11,27,18,00,00','','分组赛^E','903','日本','914','哥斯达黎加','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018976923.png','http://zq.titan007.com/Image/team/images/165018897898.png','0.25',''],['2185093','0','2022,11,27,21,00,00','','分组赛^F','645','比利时','813','摩洛哥','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/166666252074.png','http://zq.titan007.com/Image/team/images/165018837927.png','1',''],['2185092','0','2022,11,27,23,59,00','','分组赛^F','768','克罗地亚','795','加拿大','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983770149.png','http://zq.titan007.com/Image/team/images/165018903917.png','0.75',''],['2185088','0','2022,11,28,03,00,00','','分组赛^E','772','西班牙','650','德国','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983321668.png','http://zq.titan007.com/Image/team/images/164983677229.png','0',''],['2185099','0','2022,11,28,18,00,00','','分组赛^G','793','喀麦隆','642','塞尔维亚','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018812726.png','http://zq.titan007.com/Image/team/images/16498373919.png','-0.25',''],['2185105','0','2022,11,28,21,00,00','','分组赛^H','898','韩国','810','加纳','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164974972753.png','http://zq.titan007.com/Image/team/images/165018802248.png','0',''],['2185098','0','2022,11,28,23,59,00','','分组赛^G','778','巴西','648','瑞士','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018879430.png','http://zq.titan007.com/Image/team/images/164983533378.png','1',''],['2185104','0','2022,11,29,03,00,00','','分组赛^H','765','葡萄牙','767','乌拉圭','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983333830.png','http://zq.titan007.com/Image/team/images/165018929859.png','0.5',''],['2185068','0','2022,11,29,23,00,00','','分组赛^A','646','荷兰','904','卡塔尔','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/16498334962.png','http://zq.titan007.com/Image/team/images/165018957264.png','',''],['2185069','0','2022,11,29,23,00,00','','分组赛^A','779','厄瓜多尔','815','塞内加尔','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018888622.png','http://zq.titan007.com/Image/team/images/165018850327.png','',''],['2185074','0','2022,11,30,03,00,00','','分组赛^B','783','伊朗','797','美国','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018993893.png','http://zq.titan007.com/Image/team/images/165102965258.png','',''],['2185341','0','2022,11,30,03,00,00','','分组赛^B','7384','威尔士','744','英格兰','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164984044545.png','http://zq.titan007.com/Image/team/images/164983421453.png','',''],['2185083','0','2022,11,30,23,00,00','','分组赛^D','823','突尼斯','649','法国','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018860211.png','http://zq.titan007.com/Image/team/images/164983446440.png','',''],['2185352','0','2022,11,30,23,00,00','','分组赛^D','913','澳大利亚','638','丹麦','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018939680.png','http://zq.titan007.com/Image/team/images/164983780989.png','',''],['2185077','0','2022,12,01,03,00,00','','分组赛^C','891','沙特阿拉伯','819','墨西哥','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018978353.png','http://zq.titan007.com/Image/team/images/165018908829.png','',''],['2185078','0','2022,12,01,03,00,00','','分组赛^C','637','波兰','766','阿根廷','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983601624.png','http://zq.titan007.com/Image/team/images/165018869978.png','',''],['2185090','0','2022,12,01,23,00,00','','分组赛^F','768','克罗地亚','645','比利时','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164983770149.png','http://zq.titan007.com/Image/team/images/166666252074.png','',''],['2185091','0','2022,12,01,23,00,00','','分组赛^F','795','加拿大','813','摩洛哥','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018903917.png','http://zq.titan007.com/Image/team/images/165018837927.png','',''],['2185087','0','2022,12,02,03,00,00','','分组赛^E','903','日本','772','西班牙','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018976923.png','http://zq.titan007.com/Image/team/images/164983321668.png','',''],['2185362','0','2022,12,02,03,00,00','','分组赛^E','914','哥斯达黎加','650','德国','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018897898.png','http://zq.titan007.com/Image/team/images/164983677229.png','',''],['2185102','0','2022,12,02,23,00,00','','分组赛^H','810','加纳','767','乌拉圭','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018802248.png','http://zq.titan007.com/Image/team/images/165018929859.png','',''],['2185103','0','2022,12,02,23,00,00','','分组赛^H','898','韩国','765','葡萄牙','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/164974972753.png','http://zq.titan007.com/Image/team/images/164983333830.png','',''],['2185096','0','2022,12,03,03,00,00','','分组赛^G','642','塞尔维亚','648','瑞士','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/16498373919.png','http://zq.titan007.com/Image/team/images/164983533378.png','',''],['2185097','0','2022,12,03,03,00,00','','分组赛^G','793','喀麦隆','778','巴西','0','0','0','0','0','0','0','0','','','http://zq.titan007.com/Image/team/images/165018812726.png','http://zq.titan007.com/Image/team/images/165018879430.png','',''],['2302610','0','2022,12,03,23,00,00','','16强^','36185','[A1]','36187','[B2]','0','0','0','0','0','0','0','0','','','','','',''],['2302683','0','2022,12,04,03,00,00','','16强^','36189','[C1]','36192','[D2]','0','0','0','0','0','0','0','0','','','','','',''],['2302879','0','2022,12,04,23,00,00','','16强^','36191','[D1]','36190','[C2]','0','0','0','0','0','0','0','0','','','','','',''],['2302878','0','2022,12,05,03,00,00','','16强^','36188','[B1]','36186','[A2]','0','0','0','0','0','0','0','0','','','','','',''],['2302880','0','2022,12,05,23,00,00','','16强^','36193','[E1]','36196','[F2]','0','0','0','0','0','0','0','0','','','','','',''],['2302881','0','2022,12,06,03,00,00','','16强^','36197','[G1]','36200','[H2]','0','0','0','0','0','0','0','0','','','','','',''],['2302882','0','2022,12,06,23,00,00','','16强^','36195','[F1]','36194','[E2]','0','0','0','0','0','0','0','0','','','','','',''],['2302883','0','2022,12,07,03,00,00','','16强^','36199','[H1]','36198','[G2]','0','0','0','0','0','0','0','0','','','','','',''],['2302885','0','2022,12,09,23,00,00','','半准决赛^','36205','53胜者','36206','54胜者','0','0','0','0','0','0','0','0','','','','','',''],['2302884','0','2022,12,10,03,00,00','','半准决赛^','36201','49胜者','36202','50胜者','0','0','0','0','0','0','0','0','','','','','',''],['2302887','0','2022,12,10,23,00,00','','半准决赛^','36207','55胜者','36208','56胜者','0','0','0','0','0','0','0','0','','','','','',''],['2302886','0','2022,12,11,03,00,00','','半准决赛^','36203','51胜者','36204','52胜者','0','0','0','0','0','0','0','0','','','','','',''],['2302888','0','2022,12,14,03,00,00','','准决赛^','36209','57胜者','36210','58胜者','0','0','0','0','0','0','0','0','','','','','',''],['2302889','0','2022,12,15,03,00,00','','准决赛^','36211','59胜者','36212','60胜者','0','0','0','0','0','0','0','0','','','','','',''],['2302890','0','2022,12,17,23,00,00','','季军赛^','36329','61负者','36330','62负者','0','0','0','0','0','0','0','0','','','','','',''],['2302891','0','2022,12,18,23,00,00','','决赛^','36213','61胜者','36214','62胜者','0','0','0','0','0','0','0','0','','','','','','']];
+    
+    var scheArr = document.getElementById("worldcupList").value;
+    //debugger;
+    scheArr = (new Function("return"+scheArr))();
+    //debugger;
+    
+    //是否在刷新赛事列表中
+    var isInRefreshing = false;
+    var currentKind =0;
+    var isUseLocal=true;
+    InitPageSche();
+
+    function SelectWCGroup(selIndex) {
+        if (selGroupIndex == selIndex) return;
+
+        document.getElementById("group_btn" + selGroupIndex).className = "";
+        document.getElementById("group_table" + selGroupIndex).style.display = "none";
+
+        document.getElementById("group_btn" + selIndex).className = "on";
+        document.getElementById("group_table" + selIndex).style.display = "";
+
+        selGroupIndex = selIndex;
+    }
+
+    function SelectGroupSubMenu(selIndex, typeName) {
+        if (selGroupSubMenu == selIndex || isInRefreshing) return;
+
+        document.getElementById("GroupContainer").style.display = selIndex == 0 ? "" : "none";
+        document.getElementById("GroupSubMenu").getElementsByTagName("a")[selGroupSubMenu].className = "";
+        document.getElementById("GroupSubMenu").getElementsByTagName("a")[selIndex].className = "on";
+
+        selGroupSubMenu = selIndex;
+        ShowScheList(typeName);
+    }
+    switch (currentKind) {
+        case 0: SelectGroupSubMenu(0, '分组赛'); break;
+        case 1: SelectGroupSubMenu(1, '16强'); break;
+        case 2: SelectGroupSubMenu(2, '8强'); break;
+        case 3: SelectGroupSubMenu(3, '准决赛'); break;
+        case 4: SelectGroupSubMenu(4, '决赛'); break;
+        case 5: SelectGroupSubMenu(4, '决赛'); break;
+    };
+
+    $(".topImg").css("display", "block");
+    var carousel = new CreateCarousel("carousel", "infoItem", true)
+        .bindTouchEvent()
+        .setItemChangedHandler(onPageChanged);
+
+    var dots = document.querySelectorAll(".page-number li");
+    var curDot = dots[0];
+    curDot.className = "on";
+    function onPageChanged(preIndex, curIndex) {
+        curDot.className = "";
+        curDot = dots[curIndex - 12];
+        curDot.className = "on";
+    }
+    var imgAutoMove = function () {
+        carousel.next();
+    };
+    var time1 = setInterval(imgAutoMove, 3000);
+    sound_init();
+    
+</script>
+
+  <footer>
+    <div class="footer-menu">
+      <ul>
+        <li class="footer-menu-live-li">
+          <a class="footer-menu-live-a" href="https://api.whatsapp.com/send?phone=447493787747">
+            <i class="footer-menu-live-icon"><img src="/static/index/images/worldcup/wa.png" /></i>
+            <p class="footer-menu-live-text"><a href="https://api.whatsapp.com/send?phone=447493787747">WhatsApp 投注</a></p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
