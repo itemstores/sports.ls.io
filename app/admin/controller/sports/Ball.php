@@ -20,6 +20,13 @@ class Ball extends AdminController
 {
 
     use Curd;
+    
+    /**
+     * @var array 数据排序
+     */
+    protected $sort = [
+        'id'   => 'asc',
+    ];
 
     public function __construct(App $app)
     {

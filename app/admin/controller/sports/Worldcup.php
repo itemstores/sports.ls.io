@@ -20,6 +20,9 @@ class Worldcup extends AdminController
     use Curd;
 
     protected $relationSearch = true;
+    /**
+     * @var array 数据排序
+     */
     protected $sort = [
         'id'   => 'asc',
     ];
