@@ -72,6 +72,12 @@
                 <input type="text" name="away_size_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_size_odds|default=''}" />
             </div>
         </div>
+
+        <!-- 主客让分大小 -->
+        <input type="hidden" name="home_let_score" value="{$row.home_let_score|default=''}" />
+        <input type="hidden" name="home_size_score" value="{$row.home_size_score|default=''}" />
+        <input type="hidden" name="away_let_score" value="{$row.away_let_score|default=''}" />
+        <input type="hidden" name="away_size_score" value="{$row.away_size_score|default=''}" />
         
         <div class="layui-form-item">
             <label class="layui-form-label">赛程开关</label>
@@ -137,6 +143,8 @@
    				awayPoint=data.value.replace(cutRe, '+');
 			}
             $('#away_point').siblings('div[class="layui-unselect layui-form-select"]').find('input[type="text"]').val(awayPoint);
+            $('input[name="home_let_score"]').val(data.value);
+            $('input[name="away_let_score"]').val(awayPoint);
 		});
     });
     
@@ -157,6 +165,8 @@
    				homePoint=data.value.replace(cutRe, '+');
 			}
             $('#home_point').siblings('div[class="layui-unselect layui-form-select"]').find('input[type="text"]').val(homePoint);
+            $('input[name="away_let_score"]').val(data.value);
+            $('input[name="home_let_score"]').val(homePoint);
 		});
     });
 
@@ -175,6 +185,8 @@
         //select下拉框选中触发事件
         form.on('select(home_ou_xmFilter)', function(data){
             $('#away_ou').siblings('div[class="layui-unselect layui-form-select"]').find('input[type="text"]').val(data.value);
+            $('input[name="home_size_score"]').val(data.value);
+            $('input[name="away_size_score"]').val(data.value);
 		});
     });
     
@@ -189,6 +201,8 @@
         //select下拉框选中触发事件
         form.on('select(away_ou_xmFilter)', function(data){
             $('#home_ou').siblings('div[class="layui-unselect layui-form-select"]').find('input[type="text"]').val(data.value);
+            $('input[name="home_size_score"]').val(data.value);
+            $('input[name="away_size_score"]').val(data.value);
 		});
     });
 </script>

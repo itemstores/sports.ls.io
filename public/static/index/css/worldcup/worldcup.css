@@ -45,10 +45,10 @@ table tr td {text-align: center; line-height: 30px;}
 #content .match .settop.on { background: url("../../images/staron_s.png?v=1") right center no-repeat;}
 #content .match i {width: 24px; height: 16px;display: inline-block;border: 1px solid rgba(0, 0, 0, .05);line-height: normal;box-sizing: content-box;margin-top: 4px;border-radius: 3px;overflow: hidden;}
 #content .match i img {width: 100%;height: 100%;vertical-align: baseline;}
-#content .match .home {float: left;width: 40%; text-align: right;}
+#content .match .home {float: left;width: 38%; text-align: right;}
 #content .match .home i { float: right; }
-#content .match .vs {float: left; width: 20%;}
-#content .match .guest {float: left;width: 40%; text-align: left;}
+#content .match .vs {float: left; width: 24%;}
+#content .match .guest {float: left;width: 38%; text-align: left;}
 #content .match .guest .data {padding-right: 10px;}
 #content .match .guest i { float: left;}
     #content .match .msg {

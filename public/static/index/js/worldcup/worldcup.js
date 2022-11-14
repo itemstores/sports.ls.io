@@ -182,7 +182,7 @@ function ShowScheList(scheKind, scheKindIndex) {
 		var isStarted = '已开始';
 		var isEnd ='已结束';
 		var isOdds = '让分';
-		var isSize = '大小';
+		var isSize = '大 / 小';
 		var isUnopened = '未开盘';
 		var isClosed = '已关盘';
 	} else {
