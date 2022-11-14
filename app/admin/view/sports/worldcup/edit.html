@@ -19,13 +19,27 @@
             <label class="layui-form-label">主队信息</label>
             <div class="layui-input-block">
             	<span><img class="group-table-td-i" src="/static/index/images/worldcup/{$row->home_flag}.png" /> {$row->home_team} &nbsp;&nbsp;</span>
-                让分:
+                让分 / 赔率:
+				<div class="layui-input-block select-width10">
+		           <select name="home_let_score" id="home_point" lay-verify="required" lay-filter="home_point_xmFilter">
+		               <option value="{$row.home_let_score|default=''}">{$row.home_let_score|default=''}</option>
+		           </select>
+		        </div>&nbsp;&nbsp;/&nbsp;
+				<!-- 
                 <input type="text" name="home_let_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_let_init|default=''}" />
                 <input type="text" name="home_let_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_let_score|default=''}" />
+                 -->
                 <input type="text" name="home_let_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_let_odds|default=''}" />&nbsp;&nbsp;&nbsp;&nbsp;
-                大小盘:
+                大小 / 赔率:
+                <div class="layui-input-block select-width10">
+		           <select name="home_size_score" id="home_ou" lay-verify="required" lay-filter="home_ou_xmFilter">
+		               <option value="{$row.home_size_score|default=''}">{$row.home_size_score|default=''}</option>
+		           </select>
+		        </div>&nbsp;&nbsp;/&nbsp;
+                <!-- 
                 <input type="text" name="home_size_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_size_init|default=''}" />
                 <input type="text" name="home_size_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_size_score|default=''}" />
+                 -->
                 <input type="text" name="home_size_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_size_odds|default=''}" />
             </div>
         </div>
@@ -34,13 +48,27 @@
             <label class="layui-form-label">客队信息</label>
             <div class="layui-input-block">
             	<span><img class="group-table-td-i" src="/static/index/images/worldcup/{$row->away_flag}.png" /> {$row->away_team} &nbsp;&nbsp;</span>
-                让分:
+                让分 / 赔率:
+				<div class="layui-input-block select-width10">
+		           <select name="away_let_score" id="away_point" lay-verify="required" lay-filter="away_point_xmFilter">
+		               <option value="{$row.away_let_score|default=''}">{$row.away_let_score|default=''}</option>
+		           </select>
+		        </div>&nbsp;&nbsp;/&nbsp;
+                <!-- 
                 <input type="text" name="away_let_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_let_init|default=''}" />
                 <input type="text" name="away_let_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_let_score|default=''}" />
+                 -->
                 <input type="text" name="away_let_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_let_odds|default=''}" />&nbsp;&nbsp;&nbsp;&nbsp;
-                大小盘:
+                大小 / 赔率:
+                <div class="layui-input-block select-width10">
+		           <select name="away_size_score" id="away_ou" lay-verify="required" lay-filter="away_ou_xmFilter">
+		               <option value="{$row.away_size_score|default=''}">{$row.away_size_score|default=''}</option>
+		           </select>
+		        </div>&nbsp;&nbsp;/&nbsp;
+		        <!-- 
                 <input type="text" name="away_size_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_size_init|default=''}" />
                 <input type="text" name="away_size_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_size_score|default=''}" />
+                 -->
                 <input type="text" name="away_size_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_size_odds|default=''}" />
             </div>
         </div>
@@ -68,6 +96,7 @@
     </form>
 </div>
 
+<script type="text/javascript" src="/static/common/js/jquery-3.6.1.min.js"></script>
 <script type="text/javascript">
     layui.use([ 'laydate'], function(){
         var $ = layui.$;
@@ -84,5 +113,100 @@
 				//
             }
         });
-    })
+    });
+    
+    initCategoryPoint = '[{"match_price":"+6.5, +7.0"},{"match_price":"+6.5"},{"match_price":"+6.0, +6.5"},{"match_price":"+6"},{"match_price":"+5.5, +6.0"},{"match_price":"+5.5"},{"match_price":"+5.0, +5.5"},{"match_price":"+5"},{"match_price":"+4.5, +5.0"},{"match_price":"+4.5"},{"match_price":"+4.0, +4.5"},{"match_price":"+4"},{"match_price":"+3.5, +4.0"},{"match_price":"+3.5"},{"match_price":"+3.0, +3.5"},{"match_price":"+3"},{"match_price":"+2.5, +3.0"},{"match_price":"+2.5"},{"match_price":"+2.0, +2.5"},{"match_price":"+2"},{"match_price":"+1.5, +2.0"},{"match_price":"+1.5"},{"match_price":"+1.0, +1.5"},{"match_price":"+1"},{"match_price":"+0.5, +1.0"},{"match_price":"+0.5"},{"match_price":"0.0, +0.5"},{"match_price":"0.0"},{"match_price":"-6.5, -7.0"},{"match_price":"-6.5"},{"match_price":"-6.0, -6.5"},{"match_price":"-6"},{"match_price":"-5.5, -6.0"},{"match_price":"-5.5"},{"match_price":"-5.0, -5.5"},{"match_price":"-5"},{"match_price":"-4.5, -5.0"},{"match_price":"-4.5"},{"match_price":"-4.0, -4.5"},{"match_price":"-4"},{"match_price":"-3.5, -4.0"},{"match_price":"-3.5"},{"match_price":"-3.0, -3.5"},{"match_price":"-3"},{"match_price":"-2.5, -3.0"},{"match_price":"-2.5"},{"match_price":"-2.0, -2.5"},{"match_price":"-2"},{"match_price":"-1.5, -2.0"},{"match_price":"-1.5"},{"match_price":"-1.0, -1.5"},{"match_price":"-1"},{"match_price":"-0.5, -1.0"},{"match_price":"-0.5"},{"match_price":"0.0, -0.5"},{"match_price":"0.0"}]';
+	initCategoryPoint = (new Function("return"+initCategoryPoint))();
+	addRe = new RegExp(/\+/,"g");
+	cutRe = new RegExp(/\-/,"g");
+	
+	//主队让分选择
+    layui.use(['form', 'upload', 'layer'],function(){
+        var form = layui.form;
+        //使用循环遍历，给下拉列表赋值
+        $.each(initCategoryPoint, function (index, value) {
+            $('#home_point').append(new Option(value.match_price,value.match_price));
+        });
+        layui.form.render("select");//重新渲染 固定写法
+        //select下拉框选中触发事件
+        form.on('select(home_point_xmFilter)', function(data){
+        	var awayPoint = '';
+        	if(data.value.indexOf("+") >= 0 ) {
+   				awayPoint=data.value.replace(addRe, '-');
+			} else {
+   				awayPoint=data.value.replace(cutRe, '+');
+			}
+            $('#away_point').siblings('div[class="layui-unselect layui-form-select"]').find('input[type="text"]').val(awayPoint);
+		});
+    });
+    
+    //客队让分选择
+    layui.use(['form', 'upload', 'layer'],function(){
+        var form = layui.form;
+        //使用循环遍历，给下拉列表赋值
+        $.each(initCategoryPoint, function (index, value) {
+            $('#away_point').append(new Option(value.match_price,value.match_price));
+        });
+        layui.form.render("select");//重新渲染 固定写法
+        //select下拉框选中触发事件
+        form.on('select(away_point_xmFilter)', function(data){
+			var homePoint = '';
+        	if(data.value.indexOf("+") >= 0 ) {
+   				homePoint=data.value.replace(addRe, '-');
+			} else {
+   				homePoint=data.value.replace(cutRe, '+');
+			}
+            $('#home_point').siblings('div[class="layui-unselect layui-form-select"]').find('input[type="text"]').val(homePoint);
+		});
+    });
+
+
+    var initCategoryOverUnder = '[{"match_price":"10"},{"match_price":"9.5, 10.0"},{"match_price":"9.5"},{"match_price":"9.0, 9.5"},{"match_price":"9"},{"match_price":"8.5, 9.0"},{"match_price":"8.5"},{"match_price":"8.0, 8.5"},{"match_price":"8"},{"match_price":"7.5, 8.0"},{"match_price":"7.5"},{"match_price":"7.0, 7.5"},{"match_price":"7"},{"match_price":"6.5, 7.0"},{"match_price":"6.5"},{"match_price":"6.0, 6.5"},{"match_price":"6"},{"match_price":"5.5, 6.0"},{"match_price":"5.5"},{"match_price":"5.0, 5.5"},{"match_price":"5"},{"match_price":"4.5, 5"},{"match_price":"4.5"},{"match_price":"4.0, 4.5"},{"match_price":"4"},{"match_price":"3.5, 4.0"},{"match_price":"3.5"},{"match_price":"3.0, 3.5"},{"match_price":"3"},{"match_price":"2.5, 3.0"},{"match_price":"2.5"},{"match_price":"2.0, 2.5"},{"match_price":"2"},{"match_price":"1.5, 2.0"},{"match_price":"1.5"},{"match_price":"1.0, 1.5"},{"match_price":"1"},{"match_price":"0.5, 1.0"},{"match_price":"0.5"}]';
+	initCategoryOverUnder = (new Function("return"+initCategoryOverUnder))();
+
+	//主队大小选择
+    layui.use(['form', 'upload', 'layer'],function(){
+        var form = layui.form;
+        //使用循环遍历，给下拉列表赋值
+        $.each(initCategoryOverUnder, function (index, value) {
+            $('#home_ou').append(new Option(value.match_price,value.match_price));
+        });
+        layui.form.render("select");//重新渲染 固定写法
+        //select下拉框选中触发事件
+        form.on('select(home_ou_xmFilter)', function(data){
+            $('#away_ou').siblings('div[class="layui-unselect layui-form-select"]').find('input[type="text"]').val(data.value);
+		});
+    });
+    
+    //客队大小选择
+    layui.use(['form', 'upload', 'layer'],function(){
+        var form = layui.form;
+        //使用循环遍历，给下拉列表赋值
+        $.each(initCategoryOverUnder, function (index, value) {
+            $('#away_ou').append(new Option(value.match_price,value.match_price));
+        });
+        layui.form.render("select");//重新渲染 固定写法
+        //select下拉框选中触发事件
+        form.on('select(away_ou_xmFilter)', function(data){
+            $('#home_ou').siblings('div[class="layui-unselect layui-form-select"]').find('input[type="text"]').val(data.value);
+		});
+    });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

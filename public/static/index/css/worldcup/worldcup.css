@@ -1,6 +1,6 @@
 body {background: #f0f5f8; font-size: 12px;}
 .subMenu {overflow: hidden; position: relative; background: #fff; border-bottom: solid 1px var(--border-1);}
-.subMenu a {width: 20%;float: left; line-height: 40px; text-align: center; color:var(--text-color-2);font-size: 16px}
+.subMenu a {width: 20%;float: left; line-height: 40px; text-align: center; color:var(--text-color-2);font-size: 13px}
 .subMenu a.on {border-bottom: solid 2px #00a884;background: none; line-height: 38px;color:#00a884;font-weight: 600;}
 .subMenu i { background: #d52b1e; color: #fff; width: 16px; height: 16px; border-radius: 10px; font-style: normal; font-size: 12px; line-height: 16px; position: absolute; right: 1px; top: 1px;}
 .more a.worldcup { background-size: auto 50px;}
@@ -493,10 +493,10 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 }
 
 .oddsColor {
-    color: #fff;
-    background: red;
-    border-radius: 5px;
     padding: 0px 3px;
+    color: transparent;
+    -webkit-text-fill-color: #ffc107;
+    -webkit-text-stroke: 0.1px #ff9800;
 }
 
 .oddsbg {

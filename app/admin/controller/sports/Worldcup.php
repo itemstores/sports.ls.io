@@ -8,6 +8,7 @@ use app\common\controller\AdminController;
 use app\admin\service\annotation\ControllerAnnotation;
 use app\admin\service\annotation\NodeAnotation;
 use think\App;
+use app\admin\model\MatchCategory;
 
 /**
  * Class Worldcup
@@ -31,6 +32,7 @@ class Worldcup extends AdminController
     {
         parent::__construct($app);
         $this->model = new SportsWorldcup();
+        $this->modelMatchCategory = new MatchCategory();
     }
 
     /**

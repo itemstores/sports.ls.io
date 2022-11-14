@@ -186,7 +186,7 @@ function ShowScheList(scheKind, scheKindIndex) {
 		var isUnopened = '未开盘';
 		var isClosed = '已关盘';
 	} else {
-		var isNoStarted = 'NoStarted';
+		var isNoStarted = 'Not Started';
 		var isStarted = 'Started';
 		var isEnd ='End';
 		var isOdds = 'Handicap';
@@ -200,9 +200,10 @@ function ShowScheList(scheKind, scheKindIndex) {
         var groupFlag = (pathnameValue == '/') ? " 组" : " Group";
         var groupTop = (scheObj.groupName ? (scheObj.groupName + groupFlag) : scheObj.kind);
         if(pathnameValue != '/'){
-			groupTop = groupTop.replace("强","Top");
-	        groupTop = groupTop.replace("准决赛","Semi");
-	        groupTop = groupTop.replace("季军赛","Semi");
+			groupTop = groupTop.replace("8强","Quarter Final");
+            groupTop = groupTop.replace("16强","Round of 16");
+	        groupTop = groupTop.replace("准决赛","Semi Final");
+	        groupTop = groupTop.replace("季军赛","Finals");
 	        groupTop = groupTop.replace("决赛","Finals");
 		}
         if (isShow) {
@@ -223,10 +224,10 @@ function ShowScheList(scheKind, scheKindIndex) {
 
 			if(scheObj.openState == 1){
 	            htmlArr.push("    <div class=\"oddsbg oddsdbTopL\">");
-	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.homeLetInit + "</lable><lable class=\"lableLeft\">" + scheObj.homeLetScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.homeLetOdds + "</lable><span>");
+	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.homeLetScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.homeLetOdds + "</lable><span>");
 	            htmlArr.push("    </div>");
 	            htmlArr.push("    <div class=\"oddsbg oddsdbBottomL\">");
-	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.homeSizeInit + "</lable><lable class=\"lableLeft\">" + scheObj.homeSizeScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.homeSizeOdds + "</lable><span>");
+	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.homeSizeScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.homeSizeOdds + "</lable><span>");
 	            htmlArr.push("    </div>");
 	            
 			}
@@ -282,10 +283,10 @@ function ShowScheList(scheKind, scheKindIndex) {
             
             if(scheObj.openState == 1){
 	            htmlArr.push("    <div class=\"oddsbg oddsdbTopR\">");
-	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.awayLetInit + "</lable><lable class=\"lableLeft\">" + scheObj.awayLetScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awayLetOdds + "</lable><span>");
+	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.awayLetScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awayLetOdds + "</lable><span>");
 	            htmlArr.push("    </div>");
 	            htmlArr.push("    <div class=\"oddsbg oddsdbBottomR\">");
-	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.awaySizeInit + "</lable><lable class=\"lableLeft\">" + scheObj.awaySizeScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awaySizeOdds + "</lable><span>");
+	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.awaySizeScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awaySizeOdds + "</lable><span>");
 	            htmlArr.push("    </div>");
             }
             

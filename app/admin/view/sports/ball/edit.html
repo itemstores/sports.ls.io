@@ -11,7 +11,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">小组排名</label>
             <div class="layui-input-block">
-            	<input type="text" class="layui-input width-input10" lay-verify="required" placeholder="比赛时间" value="{$row.match_rank|default=''}" >
+            	<input type="text" name="match_rank" class="layui-input width-input10" lay-verify="required" placeholder="比赛时间" value="{$row.match_rank|default=''}" >
             </div>
         </div>
 
@@ -19,13 +19,13 @@
             <label class="layui-form-label">积分统计</label>
             <div class="layui-input-block">
                 赛:
-                <input type="text" name="home_let_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_count|default=''}" />
+                <input type="text" name="match_count" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_count|default=''}" />
                 胜:
-                <input type="text" name="home_let_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_won|default=''}" />
+                <input type="text" name="match_won" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_won|default=''}" />
                 平:
-                <input type="text" name="home_let_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_got|default=''}" />
+                <input type="text" name="match_got" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_got|default=''}" />
                 负:
-                <input type="text" name="home_size_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_lost|default=''}" />
+                <input type="text" name="match_lost" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.match_lost|default=''}" />
             </div>
         </div>
 
