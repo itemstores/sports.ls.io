@@ -182,7 +182,7 @@ function ShowScheList(scheKind, scheKindIndex) {
 		var isStarted = '已开始';
 		var isEnd ='已结束';
 		var isOdds = '让分';
-		var isSize = '大 / 小';
+		var isSize = '大/小';
 		var isUnopened = '未开盘';
 		var isClosed = '已关盘';
 	} else {
@@ -282,11 +282,12 @@ function ShowScheList(scheKind, scheKindIndex) {
             htmlArr.push("    </div>");
             
             if(scheObj.openState == 1){
+                var scoreVal = addSpacePrice(scheObj.awayLetScore, scheObj.awaySizeScore);
 	            htmlArr.push("    <div class=\"oddsbg oddsdbTopR\">");
-	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.awayLetScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awayLetOdds + "</lable><span>");
+	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scoreVal[0] + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awayLetOdds + "</lable><span>");
 	            htmlArr.push("    </div>");
 	            htmlArr.push("    <div class=\"oddsbg oddsdbBottomR\">");
-	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.awaySizeScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awaySizeOdds + "</lable><span>");
+	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scoreVal[1] + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awaySizeOdds + "</lable><span>");
 	            htmlArr.push("    </div>");
             }
             
@@ -301,6 +302,40 @@ function ShowScheList(scheKind, scheKindIndex) {
     }
     if (count == 0) htmlArr.push("<div class='nodata'>暂无数据</div>");
     document.getElementById("MatchContainer").innerHTML = htmlArr.join("");
+}
+
+function addSpacePrice(let, size){
+    var letVal = sizeVal = '';
+    var letlen = let.length, sizelen = size.length;
+    var len = (letlen > sizelen) ? letlen - sizelen : sizelen - letlen;
+    
+    if(len > 0){
+        if(letlen > sizelen) {
+            var sizeSpaceString = '';
+            for (var i = 0; i < len; i++) {
+                sizeSpaceString += '&nbsp;';
+                if(i%2 == 1 || ((len%2 == 1) && (len-1) == i)){
+                    sizeSpaceString += '&nbsp;';
+                }
+                sizeSpaceString = (sizeSpaceString.length > 78) ? sizeSpaceString.slice(0, sizeSpaceString.length-6) : sizeSpaceString;
+            }
+            letVal = let;
+            sizeVal = sizeSpaceString+size;
+        } else {
+            var lenSpaceString = '';
+            for (var i = 0; i < len; i++) {
+                lenSpaceString += '&nbsp;';
+                if(i%2 == 1 || ((len%2 == 1) && (len-1) == i)){
+                    lenSpaceString += '&nbsp;';
+                }
+                lenSpaceString = (lenSpaceString.length > 78) ? lenSpaceString.slice(0, lenSpaceString.length-6) : lenSpaceString;
+            }
+            letVal = lenSpaceString+let;
+            sizeVal = size;
+        }
+    }
+
+    return [letVal, sizeVal];
 }
 
 //广告

@@ -495,8 +495,8 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 .oddsColor {
     padding: 0px 3px;
     color: transparent;
-    -webkit-text-fill-color: #ffc107;
-    -webkit-text-stroke: 0.1px #ff9800;
+    -webkit-text-fill-color: #fddd1c;
+    -webkit-text-stroke: 0.1px #fddd1c;
 }
 
 .oddsbg {
@@ -505,18 +505,22 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 
 .oddsdbTopR{
 	border-top-right-radius: 5px;
+    padding-left: 4px;
 }
 
 .oddsdbBottomR{
 	border-bottom-right-radius: 5px;
+    padding-left: 4px;
 }
 
 .oddsdbTopL{
 	border-top-left-radius: 5px;
+    padding-right: 4px;
 }
 
 .oddsdbBottomL{
 	border-bottom-left-radius: 5px;
+    padding-right: 4px;
 }
 
 .oddsTriangleUp {
