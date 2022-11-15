@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use app\BaseController;
 use think\facade\View;
+use think\facade\Log;
 use app\index\model\SportsWorldcup;
 use app\index\model\SportsBall;
 
@@ -46,6 +47,10 @@ class Index extends BaseController
             if ($value['group_name'] == 'H') {
                 $match_ball[7][] = $value;
             }
+        }
+        if ($match_ball) foreach ($match_ball as $k=>$val) {
+           $sort = array_column($match_ball[$k], 'match_rank');
+           array_multisort($sort, SORT_ASC, $match_ball[$k]);
         }
         
         $result = $this->model::getSelectAll();

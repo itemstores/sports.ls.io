@@ -13,7 +13,7 @@ class SportsBall extends Model
             $map = array_merge($map, $where);
         }
         
-        return SportsBall::where($map)->order('match_rank asc')->select()->toArray();
+        return SportsBall::where($map)->order(['id'=>'asc'])->select()->toArray();
         
     }
 }
