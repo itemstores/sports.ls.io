@@ -260,8 +260,6 @@ if (!function_exists('ua_htmlspecialchars_decode')) {
     }
 }
 
-
-
 function build_upload_url($url, $upload_type = null)
 {
 
@@ -269,4 +267,65 @@ function build_upload_url($url, $upload_type = null)
         $upload_type = sysconfig('upload', 'upload_type', 'local_public');
     }
     return Filesystem::disk($upload_type)->url($url);
+}
+
+if (!function_exists('getTimeZone')) {
+    function getTimeZone($key=null){
+        $timezone_identifiers = DateTimeZone::listIdentifiers();
+        $timeZoneArray = [];
+        for ($i=0; $i < count($timezone_identifiers); $i++) {
+            $timeZone = $timezone_identifiers[$i];
+            $dateTimeZone = new DateTimeZone($timeZone);
+            $dateTime = new DateTime('now', $dateTimeZone);
+            //$timeOffset = $dateTimeZone->getOffset($dateTime);
+            $timeOffset = timezone_offset_get(new DateTimeZone( $timeZone), new DateTime());
+            $timeOffsetStr = outputOffset($timeOffset);
+            $timeZoneArray[$timeZone] = $timeOffsetStr;
+            $explode = explode(":", $timeOffsetStr);
+            $timeZoneArray[$timeZone.'_flag'] = $explode[0];
+        }
+        return empty($key) ? $timeZoneArray : $timeZoneArray[$key];
+    }
+}
+
+if (!function_exists('outputOffset')) {
+    function outputOffset($offset) {
+        $pre = $offset < 0 ? '-' : '+';
+        if ($offset < 0) $offset = -$offset;
+        $hour = (int)($offset / 3600);
+        $minute = (int)($offset / 60) % 60;
+        return $pre . sprintf('%02d:%02d', $hour, $minute);
+    }
+}
+
+if (!function_exists('divisionTime')) {
+    function divisionTime($datatime = null, $flag=false){
+        if ($datatime && $flag) {
+            $time = strtotime($datatime);
+            return date("Y,m,d,H,i,s", $time);
+        }
+        return $datatime;
+    }
+}
+
+if (!function_exists('matchState')) {
+    function matchState($match_time = null){
+        if ($match_time) {
+            $game_time = strtotime($match_time)+2*60*60;
+            $game_time = date("Y-m-d H:i:s", $game_time);
+            switch ($match_time) {
+                case $match_time > date("Y-m-d H:i:s"):
+                    $state = 0;
+                    break;
+                case $game_time >= date("Y-m-d H:i:s"):
+                    $state = 1;
+                    break;
+                default:
+                    $state = 2;
+                    break;
+            }
+            return $state;
+        }
+        return true;
+    }
 }

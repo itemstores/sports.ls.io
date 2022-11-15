@@ -47,6 +47,10 @@ class Worldcup extends BaseController
                 $match_ball[7][] = $value;
             }
         }
+        if ($match_ball) foreach ($match_ball as $k=>$val) {
+            $sort = array_column($match_ball[$k], 'match_rank');
+            array_multisort($sort, SORT_ASC, $match_ball[$k]);
+        }
         
         $result = $this->model::getSelectAll();
         
@@ -54,11 +58,11 @@ class Worldcup extends BaseController
         if ($result) foreach ($result as $key=>$value){
             $worldcup[$key][] = $value['id'];
             $worldcup[$key][] = $value['schedule'];
-            $worldcup[$key][] = $this->divisionTime($value['match_time']); //比赛时间
+            $worldcup[$key][] = divisionTime($value['match_time']); //比赛时间
             if($value['match_state']>1){
                 $worldcup[$key][] = $value['match_state']; //比赛状态(0未开始1进行中2已结束)
             } else {
-                $worldcup[$key][] = $this->matchState($value['match_time']); //比赛状态(0未开始1进行中2已结束)
+                $worldcup[$key][] = matchState($value['match_time']); //比赛状态(0未开始1进行中2已结束)
             }
             if (in_array($value['group_name'], ['A','B','C','D','E','F','G','H'])) {
                 $worldcup[$key][] = '分组赛^'.$value['group_name']; //小组
@@ -97,35 +101,12 @@ class Worldcup extends BaseController
         $worldcup = json_encode($worldcup, JSON_UNESCAPED_UNICODE);
         $worldcup = str_replace(['\\', '"'], ['', "'"], $worldcup);
         
-        View::assign(["version"=>time(), "ball"=>$match_ball, "worldcup"=>$worldcup]);
+        $timeZone = getTimeZone();
+        $timeZone = json_encode($timeZone, JSON_UNESCAPED_UNICODE);
+        $timeZone = str_replace(['\\', '"'], ['', "'"], $timeZone);
+        
+        View::assign(["version"=>time(), "ball"=>$match_ball, "worldcup"=>$worldcup, "timeZone"=>$timeZone]);
         return View::fetch();
     }
     
-    public function divisionTime($datatime = null){
-        if ($datatime) {
-            $time = strtotime($datatime);
-            return date("Y,m,d,H,i,s", $time);
-        }
-        return true;
-    }
-    
-    public function matchState($match_time = null){
-        if ($match_time) {
-            $game_time = strtotime($match_time)+2*60*60;
-            $game_time = date("Y-m-d H:i:s", $game_time);
-            switch ($match_time) {
-                case $match_time > date("Y-m-d H:i:s"):
-                    $state = 0;
-                    break;
-                case $game_time >= date("Y-m-d H:i:s"):
-                    $state = 1;
-                    break;
-                default:
-                    $state = 2;
-                    break;
-            }
-            return $state;
-        }
-        return true;
-    }
 }

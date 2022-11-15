@@ -371,8 +371,8 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 .worldcup-top-title h2::before {content: "";display: inline-block;width: 3px;height: 12px;background-color: #00a884;margin-right: 4px;vertical-align: 0;}
 .worldcup-top-title span{float: left;display: inline-block;padding: 0 10px 0 24px;line-height: 26px;margin-left: 8px;border-radius: 3px;background-size: 12px 13px;}
 .worldcup-top-menu {float: right;padding-top: 4px;}
-.du {color: #8F667B;background: #F2E6EC url(../../images/worldcup/du.png) no-repeat 8px;}
-.zz {color: #00a884;background: #f0f5f8 url(../../images/worldcup/zz.png) no-repeat 8px;}
+/* .du {color: #8F667B;background: #F2E6EC url(../../images/worldcup/du.png) no-repeat 8px;} */
+/* .zz {color: #00a884;background: #f0f5f8 url(../../images/worldcup/du.png) no-repeat 8px;} */
 
 .topImg {padding: 10px 10px 5px 10px;position: relative;}
 .bigImg {position: relative;height: 160px;overflow: hidden;}

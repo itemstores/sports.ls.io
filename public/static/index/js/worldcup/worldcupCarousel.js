@@ -79,7 +79,7 @@ function CreateCarousel(containerClass, itemClass, loop) {
     var _current = list.head;
 
     /*var _normalZIndex = _current.data.style.zIndex;*/
-    var _normalZIndex = _current.index;
+    var _normalZIndex = _current.index ? _current.index : '';
     var _activeZIndex = _normalZIndex + 1;
 
     var _pageWidth = _current.data.offsetWidth; //页面宽度
