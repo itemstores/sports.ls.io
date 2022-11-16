@@ -497,9 +497,9 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 .oddsColor {
     padding: 0px 3px;
     color: transparent;
-    -webkit-text-fill-color: #fddd1c;
-    -webkit-text-stroke: 0.1px #fddd1c;
-    background: #000;
+    -webkit-text-fill-color: #ffffff;
+    /* -webkit-text-stroke: 0.1px #fddd1c; */
+    background: #1e9fff;
     border-radius: 5px;
 }
 

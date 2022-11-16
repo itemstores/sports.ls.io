@@ -129,7 +129,8 @@
 			<div class="miniStreamView miniStreamViewFirst">
 				<div>全部</div>
 			</div>
-		  	<div class="nav-viewdate">
+		  	<div class="nav-viewdate" id="htmlWorldcup">
+				
 				<div class="miniStreamView miniStreamViewTwo">
 					<div>周二</div>
 					<div>11月16日</div>
@@ -138,41 +139,10 @@
 					<div>周二</div>
 					<div>11月16日</div>
 				</div>
-				<div class="miniStreamView">
-					<div>周二</div>
-					<div>11月16日</div>
-				</div>
-				<div class="miniStreamView">
-					<div>周二</div>
-					<div>11月16日</div>
-				</div>
-				<div class="miniStreamView">
-					<div>周二</div>
-					<div>11月16日</div>
-				</div>
-				<div class="miniStreamView">
-					<div>周二</div>
-					<div>11月16日</div>
-				</div>
-				<div class="miniStreamView">
-					<div>周二</div>
-					<div>11月16日</div>
-				</div>
-				<div class="miniStreamView">
-					<div>周二</div>
-					<div>11月16日</div>
-				</div>
-				<div class="miniStreamView">
-					<div>周二</div>
-					<div>11月16日</div>
-				</div>
-				<div class="miniStreamView">
-					<div>周二</div>
-					<div>11月16日</div>
-				</div>
+				
 			</div>
 		</div>
-		 -->
+		-->
 		<div class="matchList" id="MatchContainer"></div>
 		<div id="vsContainer" style="display: none;">
 
@@ -222,10 +192,20 @@
 
 	var timeArr = document.getElementById("timeZoneList").value;
 	timeArr = (new Function("return"+timeArr))();
-	var currentZone = timeArr[timeZone+'_flag'];
+	currentZone = timeArr[timeZone+'_flag'];
+	//currentZone = timeArr['Asia/Muscat_flag'];
 	console.log('currentZone: '+timeZone+' '+currentZone);
-	//var currentZone = timeArr['America/Edmonton_flag'];
-	currentZone = (currentZone - 8) * 60 * 60;
+	if(currentZone >= 0) {
+		if(currentZone >= 8){
+			currentZone = (Number(currentZone) - 8) * 60 * 60;
+		} else {
+			currentZone = (8 - Number(currentZone)) * 60 * 60;
+		}
+	} else {
+		currentZone = currentZone.replace('-', '');
+		console.log('currentZone: '+currentZone+' | '+ (8 + Number(currentZone)));
+		currentZone = (8 + Number(currentZone)) * 60 * 60;
+	}
 
 	cutRe = new RegExp(/\-/,"g");
 	colonRe = new RegExp(/\:/,"g");
@@ -250,6 +230,93 @@
 		return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 8);
 	}
 	//debugger;
+
+	//worldcupTime();
+
+	//世界杯比赛时间
+	function worldcupTime(){
+		var start = '2022-11-21 00:00:00';
+		var end = '2022-12-18 23:00:00';
+
+		var startFormatTime = new Date(start).getTime()/1000;
+		startFormatTime = startFormatTime - currentZone;
+		startFormatTime = getData(startFormatTime*1000);
+
+		var endFormatTime = new Date(end).getTime()/1000;
+		endFormatTime = endFormatTime - currentZone;
+		endFormatTime = getData(endFormatTime*1000);
+
+		//console.log("worldcupTime:"+startFormatTime + endFormatTime);
+
+		var timeList = dealDate(startFormatTime, endFormatTime);
+
+		var htmlWorldcup = '';
+		var miniStreamViewTwo = '';
+		let weekArrayList = [ '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+		//let weekArrayList = [ 'Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
+
+		for (var i = 0; i < timeList.length; i++) {
+			if(i == 0){
+				miniStreamViewTwo = 'miniStreamViewTwo';
+			} else {
+				miniStreamViewTwo = '';
+			}
+			let index = new Date(timeList[i]).getDay();
+			let week = weekArrayList[index];
+			//console.log("worldcupTime for:"+timeList[i]);
+			htmlWorldcup += "<div class=\"miniStreamView "+ miniStreamViewTwo +"\">";
+			htmlWorldcup += "	<div>"+week+"</div>";
+			htmlWorldcup += "	<div>"+matchFormatDate(timeList[i], "MM-dd")+"</div>";
+			htmlWorldcup += "</div>";
+		}
+		document.getElementById("htmlWorldcup").innerHTML = htmlWorldcup;
+	}
+
+	//日期格式化
+	function matchFormatDate(date, fmt) {
+		date = new Date(date);
+		//获取年份
+		if (/(y+)/.test(fmt)) {
+			// 把数字变成字符串
+			let dateY = date.getFullYear() + "";
+			//RegExp.$1 在判断中出现过，且是括号括起来的，所以 RegExp.$1 就是 "yyyy"
+			fmt = fmt.replace(RegExp.$1, dateY.substr(4 - RegExp.$1.length));
+		}
+		//获取其他
+		let o = {
+			"M+": date.getMonth() + 1,
+			"d+": date.getDate(),
+			"h+": date.getHours(),
+			"m+": date.getMinutes(),
+			"s+": date.getSeconds(),
+		};
+		for (const k in o) {
+			if (new RegExp(`(${k})`).test(fmt)) {
+				let str = o[k] + "";
+				fmt = fmt.replace(
+					RegExp.$1,
+					RegExp.$1.length == 1 ? str : ("00" + str).substr(str.length)
+				);
+			}
+		}
+		return fmt;
+	}
+
+	//日期遍历
+	function dealDate(start,end){
+		let dateList = [];
+		var startTime = new Date(start);;
+		var endTime = new Date(end);;
+
+		while ((endTime.getTime() - startTime.getTime()) >= 0) {
+			var year = startTime.getFullYear();
+			var month = startTime.getMonth() + 1 < 10 ? '0' + (startTime.getMonth() + 1) : startTime.getMonth() + 1;
+			var day = startTime.getDate().toString().length == 1 ? "0" + startTime.getDate() : startTime.getDate();
+			dateList.push(year + "-" + month + "-" + day);
+			startTime.setDate(startTime.getDate() + 1);
+		}
+		return dateList;
+	}
     
     //是否在刷新赛事列表中
     var isInRefreshing = false;
@@ -307,8 +374,6 @@
     var time1 = setInterval(imgAutoMove, 3000);
     sound_init();
 
-
-    
 </script>
 
   <footer>

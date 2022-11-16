@@ -198,6 +198,7 @@ function ShowScheList(scheKind, scheKindIndex) {
         var scheObj = WCScheArr[i];
         var isShow = scheKind ? (scheKind == "决赛" ? ["决赛", "季军赛"].indexOf(scheObj.kind) > -1 : scheObj.kind == scheKind) : true;
         var groupFlag = (pathnameValue == '/') ? " 组" : " Group";
+        var matchTimeFormat = (pathnameValue == '/') ? FormatWCTime(scheObj.matchTime, 1) : matchFormatDate("2022-"+FormatWCTime(scheObj.matchTime, 1));
         var groupTop = (scheObj.groupName ? (scheObj.groupName + groupFlag) : scheObj.kind);
         if(pathnameValue != '/'){
 			groupTop = groupTop.replace("8强","Quarter Final");
@@ -211,7 +212,7 @@ function ShowScheList(scheKind, scheKindIndex) {
             //htmlArr.push("<div class=\"match\" id=\"match_" + scheObj.scheduleid + "\" onclick=\"ToFenXi(" + scheObj.scheduleid + ")\">");
             // htmlArr.push("  <div class=\"settop" + (IsAttension(scheObj.scheduleid) ? " on" : "") + "\" onclick=\"AddAtten(" + scheObj.scheduleid + ",this,event)\"></div>");
             htmlArr.push("  <div class=\"home\">");
-            htmlArr.push("    <div class=\"data\">" + groupTop + "<span class=\"time\">" + FormatWCTime(scheObj.matchTime, 1) + "</span>" + FormatWCTime(scheObj.matchTime, 2) + "</div>");
+            htmlArr.push("    <div class=\"data\">" + groupTop + "<span class=\"time\">" + matchTimeFormat + "</span>" + FormatWCTime(scheObj.matchTime, 2) + "</div>");
             htmlArr.push("    <div class=\"team\" id=\"" + scheObj.scheduleid + "_hName\">");
             //htmlArr.push("      <span class=\"cardBox\"><span class=\"rc\" id=\"" + scheObj.scheduleid + "_homeRed\" style=\"display:" + (scheObj.homeRed > 0 && isShowRedCard ? "" : "none") + "\">" + (scheObj.homeRed > 0 ? scheObj.homeRed : "") + "</span><span class=\"yc\" id=\"" + scheObj.scheduleid + "_homeYellow\" style=\"display:" + (scheObj.homeYellow > 0 && isShowYellowCard ? "" : "none") + "\">" + (scheObj.homeYellow > 0 ? scheObj.homeYellow : "") + "</span></span>");
             if(pathnameValue == '/'){
@@ -302,6 +303,18 @@ function ShowScheList(scheKind, scheKindIndex) {
     }
     if (count == 0) htmlArr.push("<div class='nodata'>暂无数据</div>");
     document.getElementById("MatchContainer").innerHTML = htmlArr.join("");
+}
+
+function matchFormatDate(date) {
+    date = new Date(date.replace(/-/g,'/')); //Wed Jan 02 2019 00:00:00 GMT+0800 (China Standard Time)
+    var chinaDate = date.toDateString(); //"Tue, 01 Jan 2019 16:00:00 GMT"
+    //注意：此处时间为中国时区，如果是全球项目，需要转成【协调世界时】（UTC）
+    var globalDate = date.toUTCString(); //"Wed Jan 02 2019"
+    //之后的处理是一样的
+    var chinaDateArray = chinaDate.split(' ');
+    var displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}`; //"Jan XX"
+    console.log(displayDate);
+    return displayDate;
 }
 
 function addSpacePrice(let, size){
