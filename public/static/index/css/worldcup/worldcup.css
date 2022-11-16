@@ -373,6 +373,8 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 .worldcup-top-menu {float: right;padding-top: 4px;}
 /* .du {color: #8F667B;background: #F2E6EC url(../../images/worldcup/du.png) no-repeat 8px;} */
 /* .zz {color: #00a884;background: #f0f5f8 url(../../images/worldcup/du.png) no-repeat 8px;} */
+.du {color: #8F667B;background: #F2E6EC;}
+.zz {color: #00a884;background: #f0f5f8;}
 
 .topImg {padding: 10px 10px 5px 10px;position: relative;}
 .bigImg {position: relative;height: 160px;overflow: hidden;}
@@ -497,6 +499,8 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
     color: transparent;
     -webkit-text-fill-color: #fddd1c;
     -webkit-text-stroke: 0.1px #fddd1c;
+    background: #000;
+    border-radius: 5px;
 }
 
 .oddsbg {
@@ -672,4 +676,51 @@ footer .footer-menu-live-text a{
 }
 
 /* footer end */
+
+/* time-list start */
+
+.minVideoViewBox {
+    width:100%;
+    /* overflow-x: auto;
+    overflow-y: hidden;
+    white-space:nowrap; */
+    border-bottom: 3px solid #f0f5f8;
+    padding-bottom: 5px;
+    position: sticky;
+    top: 0px;
+    background: #fff;
+    z-index: 9;
+    display: flex;
+}
+.nav-viewdate{
+    width:85%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-right: 5px;
+}
+.miniStreamView {
+    width: 60px;
+    height: 50px;
+    display: inline-block;
+    margin: 5px 1px;
+    border: 1px solid #f0f5f8;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 3px;
+}
+
+.miniStreamViewFirst {
+    margin-right: 1px;
+    background: #fff;
+    line-height: 40px;
+    width: 15%;
+    margin: 5px;
+}
+
+ 
+
+/* time-list end */
         
