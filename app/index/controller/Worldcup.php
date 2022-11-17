@@ -58,7 +58,7 @@ class Worldcup extends BaseController
         if ($result) foreach ($result as $key=>$value){
             $worldcup[$key][] = $value['id'];
             $worldcup[$key][] = $value['schedule'];
-            $worldcup[$key][] = divisionTime($value['match_time']); //比赛时间
+            $worldcup[$key][] = str_replace('-', '/', $value['match_time']); //比赛时间
             if($value['match_state']>1){
                 $worldcup[$key][] = $value['match_state']; //比赛状态(0未开始1进行中2已结束)
             } else {
@@ -97,6 +97,7 @@ class Worldcup extends BaseController
             $worldcup[$key][] = $value['home_team_en']; //主队英文
             $worldcup[$key][] = $value['away_team_en']; //主队英文
             $worldcup[$key][] = $value['group_name_en']; //小组英文
+            $worldcup[$key][] = date('Y/m/d', strtotime($value['match_time'])); //比赛时间取年月日,前端时间筛选用
         }
         $worldcup = json_encode($worldcup, JSON_UNESCAPED_UNICODE);
         $worldcup = str_replace(['\\', '"'], ['', "'"], $worldcup);

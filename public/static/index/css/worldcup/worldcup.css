@@ -721,11 +721,13 @@ footer .footer-menu-live-text a{
     margin-right: 1px;
     background: #fff;
     line-height: 40px;
-    width: 15%;
+    width: 60px;
     margin: 5px;
 }
 
- 
-
+.timeZoneSelected {
+    background: #2fb79b;
+    color: #fff;    
+}
 /* time-list end */
         

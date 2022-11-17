@@ -15,6 +15,9 @@ class Developer extends BaseController
      */
     public function index()
     {
+        // $timeZone = getTimeZone();
+        // print_r($timeZone); exit;
+
         $timeZone = [];
 
         date_default_timezone_set('Asia/Shanghai');

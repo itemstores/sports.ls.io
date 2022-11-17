@@ -49,14 +49,12 @@
 		<div class="worldcup-top-title">
 			<h2>Schedule</h2>
 			<div class="worldcup-top-menu" id="lang-menu" onclick="ShowLanguage()">
-				<span>language:</span>
+				<span>语言:</span>
 				<span onclick="" class="zz language-span">English <em class="lan-arrow"></em> </span>
 				<ul class="language-list language-en-list">
 					<li onclick="window.location=document.location.protocol + '//' + document.location.host">Chinese
 					</li>
-					<li
-						onclick="window.location=document.location.protocol + '//' + document.location.host+'/worldcup'">
-						English</li>
+					<li onclick="window.location=document.location.protocol + '//' + document.location.host+'/worldcup'">English</li>
 				</ul>
 			</div>
 		</div>
@@ -120,7 +118,7 @@
 		</div>
 		<!--
 		<div class="minVideoViewBox">
-			<div class="miniStreamView miniStreamViewFirst">
+			<div class="miniStreamView miniStreamViewFirst"  onclick="selectMatchTime(0)">
 				<div>ALL</div>
 			</div>
 		  	<div class="nav-viewdate" id="htmlWorldcup">
@@ -181,8 +179,37 @@
 		var selGroupSubMenu = 0;
 		var thisServerTime = "20221105112748";
 
-		var scheArr = document.getElementById("worldcupList").value;
+		scheArr = document.getElementById("worldcupList").value;
 		scheArr = (new Function("return" + scheArr))();
+		//console.log('init scheArr: '+scheArr);
+		
+		// 选择日期查询对应赛事
+		function selectMatchTime(matchTime){
+			let newScheArr = [];
+			//console.log('selectMatchTime scheArr: '+scheArr);
+			if(matchTime == 0){
+				newScheArr = scheArr;
+				//ResetPageSche(scheArr);
+			} else {
+				for(var i=0; i<scheArr.length;) {
+					// if(scheArr[i][33] == matchTime && ((scheArr[i][32].search("16Top") != -1) || (scheArr[i][32].search("8Top") != -1) || (scheArr[i][32].search("Semi") != -1) || (scheArr[i][32].search("Finals") != -1))) {
+					// 	scheArr.splice(scheArr[i]);
+					// } else {
+					// 	i++;
+					// }
+					if(scheArr[i][33] == matchTime) {
+						newScheArr.push(scheArr[i]);
+					}  
+					i++;
+				}
+				$(this).addClass("timeZoneSelected").siblings().removeClass("timeZoneSelected");
+				//console.log('new scheArr: '+scheArr);
+			}
+			//与服务器的时间差
+			//debugger
+			console.log('selectMatchTime newScheArr: '+newScheArr);
+			ResetPageSche(newScheArr);
+		}
 
 		var timeArr = document.getElementById("timeZoneList").value;
 		timeArr = (new Function("return" + timeArr))();
@@ -225,12 +252,10 @@
 		}
 		//debugger;
 
-		//worldcupTime();
+		//worldcupTime('2022/11/21 00:00:00', '2022/12/02 23:00:00');
 
 		//世界杯比赛时间
-		function worldcupTime() {
-			var start = '2022-11-21 00:00:00';
-			var end = '2022-12-18 23:00:00';
+		function worldcupTime(start, end) {
 
 			var startFormatTime = new Date(start).getTime() / 1000;
 			startFormatTime = startFormatTime - currentZone;
@@ -258,7 +283,7 @@
 				let index = new Date(timeList[i]).getDay();
 				let week = weekArrayList[index];
 				//console.log("worldcupTime for:"+timeList[i]);
-				htmlWorldcup += "<div class=\"miniStreamView " + miniStreamViewTwo + "\">";
+				htmlWorldcup += "<div class=\"miniStreamView " + miniStreamViewTwo + "\" onclick=\"selectMatchTime('"+ timeList[i] +"')\">";
 				htmlWorldcup += "	<div>" + week + "</div>";
 				htmlWorldcup += "	<div>" + matchFormatDate(timeList[i]) + "</div>";
 				htmlWorldcup += "</div>";
@@ -289,7 +314,7 @@
 				var year = startTime.getFullYear();
 				var month = startTime.getMonth() + 1 < 10 ? '0' + (startTime.getMonth() + 1) : startTime.getMonth() + 1;
 				var day = startTime.getDate().toString().length == 1 ? "0" + startTime.getDate() : startTime.getDate();
-				dateList.push(year + "-" + month + "-" + day);
+				dateList.push(year + "/" + month + "/" + day);
 				startTime.setDate(startTime.getDate() + 1);
 			}
 			return dateList;
@@ -314,6 +339,40 @@
 		}
 
 		function SelectGroupSubMenu(selIndex, typeName) {
+			//条件日期区间定位
+			var start = '2022/11/21 00:00:00';
+			var end = '2022/12/02 23:00:00';
+			switch(selIndex){
+				case 0:
+					start = '2022/11/21 00:00:00';
+					end = '2022/12/02 23:00:00';
+					break;
+				case 1:
+					start = '2022/12/03 23:00:00';
+					end = '2022/12/07 03:00:00';
+					break;
+				case 2:
+					start = '2022/12/09 23:00:00';
+					end = '2022/12/11 03:00:00';
+					break;
+				case 3:
+					start = '2022/12/14 03:00:00';
+					end = '2022/12/15 03:00:00';
+					break;
+				case 4:
+					start = '2022/12/17 23:00:00';
+					end = '2022/12/18 23:00:00';
+					break;
+				default:
+					start = '2022/11/21 00:00:00';
+					end = '2022/12/02 23:00:00';
+					
+			}
+			//worldcupTime(start, end);
+			//初始化列表数据
+			//debugger
+			ResetPageSche(scheArr)
+
 			if (selGroupSubMenu == selIndex || isInRefreshing) return;
 
 			document.getElementById("GroupContainer").style.display = selIndex == 0 ? "" : "none";

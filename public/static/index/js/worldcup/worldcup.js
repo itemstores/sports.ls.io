@@ -22,14 +22,14 @@ function WCSche(dataArr) {
     this.matchState = parseInt(dataArr[1]);
     var mtArr = dataArr[2].split(',');
     this.matchTime = new Date(mtArr[0], parseInt(mtArr[1]) - 1, mtArr[2], mtArr[3], mtArr[4], mtArr[5]);
-/*    console.log(dataArr[3]);
-    debugger;
-    if (dataArr[3] != "") {
-        var mt2Arr = dataArr[3].split(',');
-        this.startTime = new Date(mt2Arr[0], parseInt(mt2Arr[1]) - 1, mt2Arr[2], mt2Arr[3], mt2Arr[4], mt2Arr[5]);
-    } else {
-        this.startTime = this.matchTime;
-    }*/
+    /*    console.log(dataArr[3]);
+        debugger;
+        if (dataArr[3] != "") {
+            var mt2Arr = dataArr[3].split(',');
+            this.startTime = new Date(mt2Arr[0], parseInt(mt2Arr[1]) - 1, mt2Arr[2], mt2Arr[3], mt2Arr[4], mt2Arr[5]);
+        } else {
+            this.startTime = this.matchTime;
+        }*/
     this.kind = dataArr[4].split('^')[0].replace("半准决赛", "8强");
     this.groupName = dataArr[4].split('^')[1];
     this.homeTeamId = dataArr[5];
@@ -166,138 +166,150 @@ function InitPageSche() {
         scheObj.mIndex = i + 1;
         WCScheArr.push(scheObj);
     }
-
+// debugger
     ShowScheList("分组赛");
 
     window.setTimeout(GetTime, refreshTime * 1000);
     window.setInterval(ShowStatePerMinute, 60 * 1000);
+}
+function ResetPageSche(scheArr) {
+    WCScheArr = [];
+    for (var i = 0; i < scheArr.length; i++) {
+        var scheObj = new WCSche(scheArr[i]);
+        scheObj.mIndex = i + 1;
+        WCScheArr.push(scheObj);
+    }
+    ShowScheList("分组赛");
+
+    //window.setTimeout(GetTime, refreshTime * 1000);
+    //window.setInterval(ShowStatePerMinute, 60 * 1000);
 }
 
 function ShowScheList(scheKind, scheKindIndex) {
     var scheList = [];
     var htmlArr = [];
     var count = 0;
-    if(pathnameValue == '/'){
-		var isNoStarted = '未开始';
-		var isStarted = '已开始';
-		var isEnd ='已结束';
-		var isOdds = '让分';
-		var isSize = '大/小';
-		var isUnopened = '未开盘';
-		var isClosed = '已关盘';
-	} else {
-		var isNoStarted = 'Not Started';
-		var isStarted = 'Started';
-		var isEnd ='End';
-		var isOdds = 'Handicap';
-		var isSize = 'Over/Under';
-		var isUnopened = 'Unopened';
-		var isClosed = 'Closed';
-	}
+    if (pathnameValue == '/') {
+        var isNoStarted = '未开始';
+        var isStarted = '已开始';
+        var isEnd = '已结束';
+        var isOdds = '让分';
+        var isSize = '大/小';
+        var isUnopened = '未开盘';
+        var isClosed = '已关盘';
+    } else {
+        var isNoStarted = 'Not Started';
+        var isStarted = 'Started';
+        var isEnd = 'End';
+        var isOdds = 'Handicap';
+        var isSize = 'Over/Under';
+        var isUnopened = 'Unopened';
+        var isClosed = 'Closed';
+    }
     for (var i = 0; i < WCScheArr.length; i++) {
         var scheObj = WCScheArr[i];
         var isShow = scheKind ? (scheKind == "决赛" ? ["决赛", "季军赛"].indexOf(scheObj.kind) > -1 : scheObj.kind == scheKind) : true;
         var groupFlag = (pathnameValue == '/') ? " 组" : " Group";
-        var matchTimeFormat = (pathnameValue == '/') ? FormatWCTime(scheObj.matchTime, 1) : matchFormatDate("2022-"+FormatWCTime(scheObj.matchTime, 1));
+        var matchTimeFormat = (pathnameValue == '/') ? FormatWCTime(scheObj.matchTime, 1) : matchFormatDate("2022-" + FormatWCTime(scheObj.matchTime, 1));
         var groupTop = (scheObj.groupName ? (scheObj.groupName + groupFlag) : scheObj.kind);
-        if(pathnameValue != '/'){
-			groupTop = groupTop.replace("8强","Quarter Final");
-            groupTop = groupTop.replace("16强","Round of 16");
-	        groupTop = groupTop.replace("准决赛","Semi Final");
-	        groupTop = groupTop.replace("季军赛","Finals");
-	        groupTop = groupTop.replace("决赛","Finals");
-		}
+        if (pathnameValue != '/') {
+            groupTop = groupTop.replace("8强", "Quarter Final");
+            groupTop = groupTop.replace("16强", "Round of 16");
+            groupTop = groupTop.replace("准决赛", "Semi Final");
+            groupTop = groupTop.replace("季军赛", "Finals");
+            groupTop = groupTop.replace("决赛", "Finals");
+        }
         if (isShow) {
-			htmlArr.push("<div class=\"match\" id=\"match_" + scheObj.scheduleid + "\" >");
+            htmlArr.push("<div class=\"match\" id=\"match_" + scheObj.scheduleid + "\" >");
             //htmlArr.push("<div class=\"match\" id=\"match_" + scheObj.scheduleid + "\" onclick=\"ToFenXi(" + scheObj.scheduleid + ")\">");
             // htmlArr.push("  <div class=\"settop" + (IsAttension(scheObj.scheduleid) ? " on" : "") + "\" onclick=\"AddAtten(" + scheObj.scheduleid + ",this,event)\"></div>");
             htmlArr.push("  <div class=\"home\">");
             htmlArr.push("    <div class=\"data\">" + groupTop + "<span class=\"time\">" + matchTimeFormat + "</span>" + FormatWCTime(scheObj.matchTime, 2) + "</div>");
             htmlArr.push("    <div class=\"team\" id=\"" + scheObj.scheduleid + "_hName\">");
             //htmlArr.push("      <span class=\"cardBox\"><span class=\"rc\" id=\"" + scheObj.scheduleid + "_homeRed\" style=\"display:" + (scheObj.homeRed > 0 && isShowRedCard ? "" : "none") + "\">" + (scheObj.homeRed > 0 ? scheObj.homeRed : "") + "</span><span class=\"yc\" id=\"" + scheObj.scheduleid + "_homeYellow\" style=\"display:" + (scheObj.homeYellow > 0 && isShowYellowCard ? "" : "none") + "\">" + (scheObj.homeYellow > 0 ? scheObj.homeYellow : "") + "</span></span>");
-            if(pathnameValue == '/'){
-				htmlArr.push("      <div class=\"name\">" + scheObj.homeTeam + "</div>");
-			} else {
-				htmlArr.push("      <div class=\"name\">" + scheObj.homeTeamEn + "</div>");
-			}
+            if (pathnameValue == '/') {
+                htmlArr.push("      <div class=\"name\">" + scheObj.homeTeam + "</div>");
+            } else {
+                htmlArr.push("      <div class=\"name\">" + scheObj.homeTeamEn + "</div>");
+            }
             htmlArr.push("      <i><img src=\"" + scheObj.homeFlag + "\" onerror=\"WCImgOnError(this)\" /></i>");
             htmlArr.push("    </div>");
 
-			if(scheObj.openState == 1){
-	            htmlArr.push("    <div class=\"oddsbg oddsdbTopL\">");
-	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.homeLetScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.homeLetOdds + "</lable><span>");
-	            htmlArr.push("    </div>");
-	            htmlArr.push("    <div class=\"oddsbg oddsdbBottomL\">");
-	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.homeSizeScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.homeSizeOdds + "</lable><span>");
-	            htmlArr.push("    </div>");
-	            
-			}
-			
-			htmlArr.push("  </div>");
-            htmlArr.push("  <div class=\"vs\">");
-            
-            if(scheObj.openStateFlag == 0){
-				htmlArr.push("    <div class=\"matchStateFlag0\"><lable>"+isNoStarted+"</lable></div>");
-			}
-			if(scheObj.openStateFlag == 1){
-				htmlArr.push("    <div class=\"matchStateFlag1\"><lable>"+isStarted+"</lable></div>");
-			}
-			if(scheObj.openStateFlag == 2){
-				htmlArr.push("    <div class=\"matchStateFlag2\"><lable>"+isEnd+"</lable></div>");
-			}
-			
-            htmlArr.push("    <div class=\"name " + FormatScoreClass(scheObj) + "\" id=\"" + scheObj.scheduleid + "_score\">" + FormatScore(scheObj) + "</div>");
-            
-            if(scheObj.openState == 0){
-	            htmlArr.push("    <div class=\"oddsbg\">");
-	            htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable>"+isUnopened+"</lable><span>");
-	            htmlArr.push("    </div>");
-			}
-            
-            if(scheObj.openState == 1){
-	            htmlArr.push("    <div class=\"oddsbg\">");
-	            htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable>"+isOdds+"</lable><span>");
-	            htmlArr.push("    </div>");
-	            htmlArr.push("    <div class=\"oddsbg\">");
-	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>"+isSize+"<span>");
-	            htmlArr.push("    </div>");
+            if (scheObj.openState == 1) {
+                htmlArr.push("    <div class=\"oddsbg oddsdbTopL\">");
+                htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.homeLetScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.homeLetOdds + "</lable><span>");
+                htmlArr.push("    </div>");
+                htmlArr.push("    <div class=\"oddsbg oddsdbBottomL\">");
+                htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.homeSizeScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.homeSizeOdds + "</lable><span>");
+                htmlArr.push("    </div>");
+
             }
-            
-            if(scheObj.openState == 2){
-	            htmlArr.push("    <div class=\"oddsbg\">");
-	            htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable>"+isClosed+"</lable><span>");
-	            htmlArr.push("    </div>");
-			}
-            
+
+            htmlArr.push("  </div>");
+            htmlArr.push("  <div class=\"vs\">");
+
+            if (scheObj.openStateFlag == 0) {
+                htmlArr.push("    <div class=\"matchStateFlag0\"><lable>" + isNoStarted + "</lable></div>");
+            }
+            if (scheObj.openStateFlag == 1) {
+                htmlArr.push("    <div class=\"matchStateFlag1\"><lable>" + isStarted + "</lable></div>");
+            }
+            if (scheObj.openStateFlag == 2) {
+                htmlArr.push("    <div class=\"matchStateFlag2\"><lable>" + isEnd + "</lable></div>");
+            }
+
+            htmlArr.push("    <div class=\"name " + FormatScoreClass(scheObj) + "\" id=\"" + scheObj.scheduleid + "_score\">" + FormatScore(scheObj) + "</div>");
+
+            if (scheObj.openState == 0) {
+                htmlArr.push("    <div class=\"oddsbg\">");
+                htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable>" + isUnopened + "</lable><span>");
+                htmlArr.push("    </div>");
+            }
+
+            if (scheObj.openState == 1) {
+                htmlArr.push("    <div class=\"oddsbg\">");
+                htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable>" + isOdds + "</lable><span>");
+                htmlArr.push("    </div>");
+                htmlArr.push("    <div class=\"oddsbg\">");
+                htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + isSize + "<span>");
+                htmlArr.push("    </div>");
+            }
+
+            if (scheObj.openState == 2) {
+                htmlArr.push("    <div class=\"oddsbg\">");
+                htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable>" + isClosed + "</lable><span>");
+                htmlArr.push("    </div>");
+            }
+
             htmlArr.push("  </div>");
             htmlArr.push("  <div class=\"guest\">");
             htmlArr.push("    <div class=\"data\">" + Goal2GoalCn(scheObj.firstLetGoal) + " <span class=\"conner\" id=\"" + scheObj.scheduleid + "_corner\">" + FormatCorner(scheObj) + "</span><span class=\"halfScore\" id=\"" + scheObj.scheduleid + "_halfScore\">" + FormatHalfScore(scheObj) + "</span></div>");
             htmlArr.push("    <div class=\"team\" id=\"" + scheObj.scheduleid + "_gName\">");
             htmlArr.push("      <i><img src=\"" + scheObj.awayFlag + "\" onerror=\"WCImgOnError(this)\" /></i>");
-            if(pathnameValue == '/'){
-				htmlArr.push("      <div class=\"name\">" + scheObj.awayTeam + "</div>");
-			} else {
-				htmlArr.push("      <div class=\"name\">" + scheObj.awayTeamEn + "</div>");
-			}
+            if (pathnameValue == '/') {
+                htmlArr.push("      <div class=\"name\">" + scheObj.awayTeam + "</div>");
+            } else {
+                htmlArr.push("      <div class=\"name\">" + scheObj.awayTeamEn + "</div>");
+            }
             //htmlArr.push("      <span class=\"cardBox\"><span class=\"yc\" id=\"" + scheObj.scheduleid + "_awayYellow\" style=\"display:" + (scheObj.awayYellow > 0 && isShowYellowCard ? "" : "none") + "\">" + (scheObj.awayYellow > 0 ? scheObj.awayYellow : "") + "</span><span class=\"rc\" id=\"" + scheObj.scheduleid + "_awayRed\" style=\"display:" + (scheObj.awayRed > 0 && isShowRedCard ? "" : "none") + "\">" + (scheObj.awayRed > 0 ? scheObj.awayRed : "") + "</span></span>");
             htmlArr.push("    </div>");
-            
-            if(scheObj.openState == 1){
+
+            if (scheObj.openState == 1) {
                 var scoreVal = addSpacePrice(scheObj.awayLetScore, scheObj.awaySizeScore);
-	            htmlArr.push("    <div class=\"oddsbg oddsdbTopR\">");
-	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scoreVal[0] + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awayLetOdds + "</lable><span>");
-	            htmlArr.push("    </div>");
-	            htmlArr.push("    <div class=\"oddsbg oddsdbBottomR\">");
-	            htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scoreVal[1] + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awaySizeOdds + "</lable><span>");
-	            htmlArr.push("    </div>");
+                htmlArr.push("    <div class=\"oddsbg oddsdbTopR\">");
+                htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scoreVal[0] + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awayLetOdds + "</lable><span>");
+                htmlArr.push("    </div>");
+                htmlArr.push("    <div class=\"oddsbg oddsdbBottomR\">");
+                htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scoreVal[1] + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awaySizeOdds + "</lable><span>");
+                htmlArr.push("    </div>");
             }
-            
+
             htmlArr.push("  </div>");
             //htmlArr.push("  <div class=\"more\"></div>")
             htmlArr.push("  <div class=\"msg\" style='display:none;' id=\"" + scheObj.scheduleid + "_explain\">" + scheObj.explainText + "</div>");
             if (Ba_Soccer.indexOf(scheObj.scheduleid) != -1)
                 //htmlArr.push("  <a href='?id=" + scheObj.scheduleid + "&kind=1'><div class=\"information\">本场精选情报</div></a>");
-            htmlArr.push("</div>");
+                htmlArr.push("</div>");
             count++;
         }
     }
@@ -306,7 +318,7 @@ function ShowScheList(scheKind, scheKindIndex) {
 }
 
 function matchFormatDate(date) {
-    date = new Date(date.replace(/-/g,'/')); //Wed Jan 02 2019 00:00:00 GMT+0800 (China Standard Time)
+    date = new Date(date.replace(/-/g, '/')); //Wed Jan 02 2019 00:00:00 GMT+0800 (China Standard Time)
     var chinaDate = date.toDateString(); //"Tue, 01 Jan 2019 16:00:00 GMT"
     //注意：此处时间为中国时区，如果是全球项目，需要转成【协调世界时】（UTC）
     var globalDate = date.toUTCString(); //"Wed Jan 02 2019"
@@ -317,33 +329,33 @@ function matchFormatDate(date) {
     return displayDate;
 }
 
-function addSpacePrice(let, size){
+function addSpacePrice(let, size) {
     var letVal = sizeVal = '';
     var letlen = let.length, sizelen = size.length;
     var len = (letlen > sizelen) ? letlen - sizelen : sizelen - letlen;
-    
-    if(len > 0){
-        if(letlen > sizelen) {
+
+    if (len > 0) {
+        if (letlen > sizelen) {
             var sizeSpaceString = '';
             for (var i = 0; i < len; i++) {
                 sizeSpaceString += '&nbsp;';
-                if(i%2 == 1 || ((len%2 == 1) && (len-1) == i)){
+                if (i % 2 == 1 || ((len % 2 == 1) && (len - 1) == i)) {
                     sizeSpaceString += '&nbsp;';
                 }
-                sizeSpaceString = (sizeSpaceString.length > 78) ? sizeSpaceString.slice(0, sizeSpaceString.length-6) : sizeSpaceString;
+                sizeSpaceString = (sizeSpaceString.length > 78) ? sizeSpaceString.slice(0, sizeSpaceString.length - 6) : sizeSpaceString;
             }
             letVal = let;
-            sizeVal = sizeSpaceString+size;
+            sizeVal = sizeSpaceString + size;
         } else {
             var lenSpaceString = '';
             for (var i = 0; i < len; i++) {
                 lenSpaceString += '&nbsp;';
-                if(i%2 == 1 || ((len%2 == 1) && (len-1) == i)){
+                if (i % 2 == 1 || ((len % 2 == 1) && (len - 1) == i)) {
                     lenSpaceString += '&nbsp;';
                 }
-                lenSpaceString = (lenSpaceString.length > 78) ? lenSpaceString.slice(0, lenSpaceString.length-6) : lenSpaceString;
+                lenSpaceString = (lenSpaceString.length > 78) ? lenSpaceString.slice(0, lenSpaceString.length - 6) : lenSpaceString;
             }
-            letVal = lenSpaceString+let;
+            letVal = lenSpaceString + let;
             sizeVal = size;
         }
     }
@@ -1150,16 +1162,15 @@ function initSound(arrayBuffer, type) {
     }, function (e) { //解码出错时的回调函数
         console.log('Error decoding file', e);
     });
- }   
- //多语言选择
- function ShowLanguage() {
+}
+//多语言选择
+function ShowLanguage() {
     document.getElementById('lang-menu').classList.toggle('showlan');
 }
 
-document.addEventListener("click",clickHidden); //所有组件添加点击事件
-function clickHidden()
-{
-	console.log(123);
-	//document.getElementById("language-list").style.display = "none";
-}
+// document.addEventListener("click", clickHidden); //所有组件添加点击事件
+// function clickHidden() {
+//     console.log(123);
+//     //document.getElementById("language-list").style.display = "none";
+// }
 
