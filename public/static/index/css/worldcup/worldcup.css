@@ -1,7 +1,7 @@
 body {background: #f0f5f8; font-size: 12px;}
 .subMenu {overflow: hidden; position: relative; background: #fff; border-bottom: solid 1px var(--border-1);}
-.subMenu a {width: 20%;float: left; line-height: 40px; text-align: center; color:var(--text-color-2);font-size: 13px}
-.subMenu a.on {border-bottom: solid 2px #00a884;background: none; line-height: 38px;color:#00a884;font-weight: 600;}
+.subMenu a {width: 20%;float: left; line-height: 40px; text-align: center; color:var(--text-color-2);font-size: 13px;letter-spacing: -0.02rem;}
+.subMenu a.on {border-bottom: solid 2px #00a884;background: none; line-height: 38px;color:#00a884;font-weight: 600;letter-spacing: -0.02rem;}
 .subMenu i { background: #d52b1e; color: #fff; width: 16px; height: 16px; border-radius: 10px; font-style: normal; font-size: 12px; line-height: 16px; position: absolute; right: 1px; top: 1px;}
 .more a.worldcup { background-size: auto 50px;}
 .worldcup img {height: 25px;}
@@ -369,8 +369,13 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 .worldcup-top-title {clear: both;line-height: 36px;height: 36px;border-bottom: 1px solid var(--border-1);padding: 0 10px;}
 .worldcup-top-title h2{ font-size: 16px;font-weight: 600;float: left;}
 .worldcup-top-title h2::before {content: "";display: inline-block;width: 3px;height: 12px;background-color: #00a884;margin-right: 4px;vertical-align: 0;}
-.worldcup-top-title span{float: left;display: inline-block;padding: 0 10px 0 24px;line-height: 26px;margin-left: 8px;border-radius: 3px;background-size: 12px 13px;}
-.worldcup-top-menu {float: right;padding-top: 4px;}
+.worldcup-top-title .language-span{display: inline-block;padding: 0 10px 0 24px;line-height: 26px;margin-left: 8px;border-radius: 3px;background-size: 12px 13px;}
+.worldcup-top-menu {
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 /* .du {color: #8F667B;background: #F2E6EC url(../../images/worldcup/du.png) no-repeat 8px;} */
 /* .zz {color: #00a884;background: #f0f5f8 url(../../images/worldcup/du.png) no-repeat 8px;} */
 .du {color: #8F667B;background: #F2E6EC;}
@@ -570,7 +575,7 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 .language-list{
     display: inline-block;
     position: absolute;
-    margin-top: 1.3rem;
+    margin-top: 5.8rem;
     right: 0.32rem;
     z-index: 1;
     padding: 10px 5px;
@@ -578,7 +583,7 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 
 .language-en-list {
 	position: absolute;
-    margin-top: 1.3rem;
+    margin-top: 5.8rem;
     right: 0.7rem;
     z-index: 1;
     padding: 10px 0px;

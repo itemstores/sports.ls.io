@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Developer</title>
+    <script type="text/javascript" src="/static/index/js/worldcup/jquery.min.js"></script>
+</head>
+
+<script>
+    timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+</script>
+
+<body>
+    <p>北京时间：{$timeZone.Shanghai}</p>
+    <p>多哈时间：{$timeZone.Qatar}</p>
+    <p id="currentTimeZone"></p>
+    <p id="currentTimeZoneTime"></p>
+</body>
+
+<script>
+    document.getElementById('currentTimeZone').innerHTML = '本地时区：' + timeZone;
+
+    let time = new Date();
+    let timeZoneTime = GetTimeFromTimeZone(time);
+    //document.getElementById('currentTimeZoneTime').innerHTML = '本地时间：' + timeZoneTime;
+
+    function GetTimeFromTimeZone(timeZone) {
+        var lDate = new Date();
+        var localTime = lDate.getTime();
+        var localOffset = lDate.getTimezoneOffset() * 60000; //本地和0时区的偏移
+        var utc = localTime + localOffset; //得到0时区时间
+        var placeTime = utc + (3600000 * timeZone); //本地时间
+        var pdate = new Date(placeTime);
+        //document.getElementById('currentTimeZoneTime').innerHTML = "本地时间： " + lDate.toLocaleString() + "<br/>UTC时间： " + new Date(utc).toLocaleString();
+        document.getElementById('currentTimeZoneTime').innerHTML = "本地时间： " + new Date(utc).toLocaleString();
+        return pdate.toLocaleString();
+    }
+
+    function clock() {
+        var time = new Date();
+        var hour = time.getHours();
+        var minute = time.getMinutes();
+        var second = time.getSeconds();
+
+        var cn = document.getElementById("cnTimeSpan");
+        cn.innerHTML = getMyTimes(hour, minute, second);
+
+        var baku = document.getElementById("bakuTimeSpan");
+        baku.innerHTML = getMyTimes(hour - 4, minute, second);
+
+        var usa = document.getElementById("usaTimeSpan");
+        usa.innerHTML = getMyTimes(hour - 12, minute, second);
+
+        var istanbul = document.getElementById("istanbulTimeSpan");
+        istanbul.innerHTML = getMyTimes(hour - 5, minute, second);
+
+        var moscow = document.getElementById("moscowTimeSpan");
+        moscow.innerHTML = getMyTimes(hour - 4, minute, second);
+
+        var dubai = document.getElementById("dubaiTimeSpan");
+        dubai.innerHTML = getMyTimes(hour - 4, minute, second);
+
+        setTimeout("clock()", 1000);
+    }
+
+    function getMyTimes(h, m, s) {
+        if (h >= 24) {
+            h -= 24;
+        }
+        if (h < 0) {
+            h += 24;
+        }
+        var timevalue = ((h < 10) ? "0" : "") + h
+        timevalue += ((m < 10) ? ":0" : ":") + m
+        timevalue += ((s < 10) ? ":0" : ":") + s
+        return timevalue;
+    }
+
+    onload = "clock();return true"
+
+    var week = new Array(7);
+    week[0] = "SUN";
+    week[1] = "MON";
+    week[2] = "TUS";
+    week[3] = "WEN";
+    week[4] = "THUR";
+    week[5] = "FRI";
+    week[6] = "SAT";
+    function getMyTimes(h, m, s) {
+        if (h >= 24) {
+            h -= 24;
+        }
+        if (h < 0) {
+            h += 24;
+        }
+        var today = new Date;
+        var mymon = today.getMonth() + 1;
+        var currdate = today.getDate() + "-" + mymon + "-" + today.getFullYear() + " " + week[today.getDay()] + " ";
+        var timevalue = currdate + ((h < 10) ? "0" : "") + h
+        timevalue += ((m < 10) ? ":0" : ":") + m
+        return timevalue;
+    }
+
+    function clock() {
+        var time = new Date();
+        var hour = time.getHours();
+        var minute = time.getMinutes();
+        var second = time.getSeconds();
+        var cn = document.getElementById("showTime");
+        cn.innerHTML = getMyTimes(hour, minute, second);
+        setTimeout("clock()", 60000);
+    } 
+</script>
+
+</html>
