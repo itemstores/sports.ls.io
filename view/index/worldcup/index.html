@@ -120,13 +120,13 @@
 			{/volist}
 			<!--end 小组积分-->
 		</div>
-		
+		<!--
 		<div class="minVideoViewBox">
 			<div class="miniStreamView miniStreamViewFirst" id="onTimeZone0" onclick="selectMatchTime(0)">
 				<div>ALL</div>
 			</div>
 		  	<div class="nav-viewdate" id="htmlWorldcup">
-				<!--
+				
 				<div class="miniStreamView miniStreamViewTwo">
 					<div>周二</div>
 					<div>11月16日</div>
@@ -135,10 +135,10 @@
 					<div>周二</div>
 					<div>11月16日</div>
 				</div>
-				-->
+				
 			</div>
 		</div>
-
+		-->
 		<input type="hidden" name="worldcupTimeZoneList" id="worldcupTimeZoneList" value="0" />
 		
 		<div class="matchList" id="MatchContainer"></div>
@@ -355,7 +355,7 @@
 				htmlWorldcup += "	<div>" + matchFormatDate(timeList[i]) + "</div>";
 				htmlWorldcup += "</div>";
 			}
-			document.getElementById("htmlWorldcup").innerHTML = htmlWorldcup;
+			//document.getElementById("htmlWorldcup").innerHTML = htmlWorldcup;
 		}
 
 		//日期格式化
