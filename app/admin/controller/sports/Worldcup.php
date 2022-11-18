@@ -40,6 +40,8 @@ class Worldcup extends AdminController
      */
     public function index()
     {
+        //$matchPrice = $this->modelMatchCategory->field('match_price')->where('match_category', '=', 0)->select()->toArray();
+        //print_r(json_encode($matchPrice, JSON_UNESCAPED_UNICODE)); exit;
         if ($this->request->isAjax()) {
             if (input('selectFields')) {
                 return $this->selectList();

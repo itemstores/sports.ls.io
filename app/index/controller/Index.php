@@ -99,6 +99,7 @@ class Index extends BaseController
             $worldcup[$key][] = $value['away_team_en']; //主队英文
             $worldcup[$key][] = $value['group_name_en']; //小组英文
             $worldcup[$key][] = date('Y/m/d', strtotime($value['match_time'])); //比赛时间取年月日,前端时间筛选用
+            $worldcup[$key][] = date('Y/m/d H:i:s', strtotime($value['match_time'])); //比赛时间取年月日,前端时间筛选用
         }
         $worldcup = json_encode($worldcup, JSON_UNESCAPED_UNICODE);
         $worldcup = str_replace(['\\', '"'], ['', "'"], $worldcup);

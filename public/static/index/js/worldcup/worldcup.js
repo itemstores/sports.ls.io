@@ -172,14 +172,14 @@ function InitPageSche() {
     window.setTimeout(GetTime, refreshTime * 1000);
     window.setInterval(ShowStatePerMinute, 60 * 1000);
 }
-function ResetPageSche(scheArr) {
+function ResetPageSche(scheArr, typeName) {
     WCScheArr = [];
     for (var i = 0; i < scheArr.length; i++) {
         var scheObj = new WCSche(scheArr[i]);
         scheObj.mIndex = i + 1;
         WCScheArr.push(scheObj);
     }
-    ShowScheList("分组赛");
+    ShowScheList(typeName);
 
     //window.setTimeout(GetTime, refreshTime * 1000);
     //window.setInterval(ShowStatePerMinute, 60 * 1000);

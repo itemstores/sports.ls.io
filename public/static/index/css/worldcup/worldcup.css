@@ -26,7 +26,7 @@ table tr td {text-align: center; line-height: 30px;}
 #content .match {padding: 5px 0px 10px 0;overflow: hidden; line-height: 26px;}
 #content .match .team {display: flex;padding: 0 4px;}
 #content .match .home .team {justify-content: flex-end;}
-#content .match .data {font-size: 12px; font-weight: bold;}
+#content .match .data {font-size: 12px; font-weight: bold; letter-spacing: -0.02rem;}
 #content .match .data .halfScore {padding: 0px 3px; display: inline;}
 #content .match .data .time {padding: 0px 5px;}
 #content .match .data .conner {float: right; padding: 0px 0px 0px 15px; background: url("/static/index/images/worldcup/flag.png") left 5px no-repeat; background-size: 13px 13px;}
@@ -630,6 +630,7 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
  }
  .worldcup-top-menu.showlan .language-list{
  	display: block;
+    z-index: 10;
  }
 .active::after {
 	/*旋转180度*/

@@ -56,11 +56,11 @@
 			</div>
 		</div>
 		<nav class="subMenu" id="GroupSubMenu">
-			<a href="javascript:void(0)" class="on" onclick="SelectGroupSubMenu(0,&#39;分组赛&#39;)">小组赛</a> <a
-				href="javascript:void(0)" onclick="SelectGroupSubMenu(1,&#39;16强&#39;)" class="">16强</a> <a
-				href="javascript:void(0)" onclick="SelectGroupSubMenu(2,&#39;8强&#39;)" class="">8强</a> <a
-				href="javascript:void(0)" onclick="SelectGroupSubMenu(3,&#39;准决赛&#39;)" class="">准决赛</a> <a
-				href="javascript:void(0)" onclick="SelectGroupSubMenu(4,&#39;决赛&#39;)" class="">决赛</a>
+			<a href="javascript:void(0)" class="on" onclick="SelectGroupSubMenu(0,'分组赛')">小组赛</a> <a
+				href="javascript:void(0)" onclick="SelectGroupSubMenu(1,'16强')" class="">16强</a> <a
+				href="javascript:void(0)" onclick="SelectGroupSubMenu(2,'8强')" class="">8强</a> <a
+				href="javascript:void(0)" onclick="SelectGroupSubMenu(3,'准决赛')" class="">准决赛</a> <a
+				href="javascript:void(0)" onclick="SelectGroupSubMenu(4,'决赛')" class="">决赛</a>
 		</nav>
 
 		<!--end 小组积分-->
@@ -97,6 +97,8 @@
 						<th width="10%">胜</th>
 						<th width="10%">平</th>
 						<th width="10%">负</th>
+						<th width="10%">进球</th>
+						<th width="10%">积分</th>
 					</tr>
 					{foreach $vo as $i=>$val}
 					<tr>
@@ -107,6 +109,8 @@
 						<td><span class="saihit">{$val.match_won}</span></td>
 						<td><span class="saihit">{$val.match_got}</span></td>
 						<td><span class="saihit">{$val.match_lost}</span></td>
+						<td><span class="saihit">{$val.match_ga}</span></td>
+						<td><span class="saihit">{$val.match_pts}</span></td>
 					</tr>
 					{/foreach}
 				</tbody>
@@ -114,13 +118,13 @@
 			{/volist}
 			<!--end 小组积分-->
 		</div>
-		<!--
+		
 		<div class="minVideoViewBox">
-			<div class="miniStreamView miniStreamViewFirst" onclick="selectMatchTime(0)">
+			<div class="miniStreamView miniStreamViewFirst" id="onTimeZone0" onclick="selectMatchTime(0)">
 				<div>全部</div>
 			</div>
 		  	<div class="nav-viewdate" id="htmlWorldcup">
-				
+				<!--
 				<div class="miniStreamView miniStreamViewTwo">
 					<div>周二</div>
 					<div>11月16日</div>
@@ -129,10 +133,11 @@
 					<div>周二</div>
 					<div>11月16日</div>
 				</div>
-				
+				-->
 			</div>
 		</div>
-		-->
+		<input type="hidden" name="worldcupTimeZoneList" id="worldcupTimeZoneList" value="0" />
+		
 		<div class="matchList" id="MatchContainer"></div>
 		<div id="vsContainer" style="display: none;">
 
@@ -184,36 +189,94 @@
 		// 选择日期查询对应赛事
 		function selectMatchTime(matchTime){
 			let newScheArr = [];
-			//console.log('selectMatchTime scheArr: '+scheArr);
-			if(matchTime == 0){
-				newScheArr = scheArr;
-				//ResetPageSche(scheArr);
-			} else {
-				for(var i=0; i<scheArr.length;) {
-					// if(scheArr[i][33] == matchTime && ((scheArr[i][32].search("16Top") != -1) || (scheArr[i][32].search("8Top") != -1) || (scheArr[i][32].search("Semi") != -1) || (scheArr[i][32].search("Finals") != -1))) {
-					// 	scheArr.splice(scheArr[i]);
-					// } else {
-					// 	i++;
-					// }
-					if(scheArr[i][33] == matchTime) {
-						newScheArr.push(scheArr[i]);
-					}  
-					i++;
-				}
-				$(this).addClass("timeZoneSelected").siblings().removeClass("timeZoneSelected");
-				//console.log('new scheArr: '+scheArr);
+			let groupFlag = $('#worldcupTimeZoneList').val(); //0-小组赛1-16强2-8强3-准决赛4-决赛
+			let slantRe = new RegExp(/\//, "g");
+			let idVal = (typeof(matchTime) == 'string') ? matchTime.replace(slantRe, '') : matchTime;
+			//条件日期区间定位
+			var start = '2022/11/21';
+			var end = '2022/12/03';
+			var typeNameFlag = '分组赛';
+			switch(groupFlag){
+				case '0':
+					start = '2022/11/21';
+					end = '2022/12/03';
+					typeNameFlag = '分组赛';
+					break;
+				case '1':
+					start = '2022/12/03';
+					end = '2022/12/07';
+					typeNameFlag = '16强';
+					break;
+				case '2':
+					start = '2022/12/09';
+					end = '2022/12/11';
+					typeNameFlag = '8强';
+					break;
+				case '3':
+					start = '2022/12/14';
+					end = '2022/12/15';
+					typeNameFlag = '准决赛';
+					break;
+				case '4':
+					start = '2022/12/17';
+					end = '2022/12/18';
+					typeNameFlag = '决赛';
+					break;
+				default:
+					start = '2022/11/21';
+					end = '2022/12/03';
+					typeNameFlag = '分组赛';
 			}
+			
+			let strFlag = '01234';
+			// if(strFlag.indexOf(groupFlag) != -1){
+				//newScheArr = scheArr;
+				if(matchTime != 0){
+					start = matchTime;
+					end = matchTime;
+				}
+				//console.log('worldcupTimeZoneList ' + groupFlag + ' start '+ start + ' end ' + end);
+				for(var k=0; k<scheArr.length;) {
+					if(scheArr[k][33] >= start && scheArr[k][33] <= end) {
+						//console.log('for scheArr[k][33]: '+scheArr[k][33]);
+						newScheArr.push(scheArr[k]);
+					}  
+					k++;
+				}
+				//console.log('if newScheArr: '+newScheArr);
+				console.log('idVal:'+idVal);
+				if (idVal == 0){
+					$('#onTimeZone0').addClass("timeZoneSelected");
+					$('.onTimeZoneList').removeClass("timeZoneSelected");
+				} else {
+					$('#onTimeZone'+idVal).addClass("timeZoneSelected").siblings().removeClass("timeZoneSelected");
+					$('#onTimeZone0').removeClass("timeZoneSelected")
+				}
+				
+				//ResetPageSche(scheArr);
+			// } else {
+			// 	for(var i=0; i<scheArr.length;) {
+			// 		if(scheArr[i][33] == matchTime) {
+			// 			newScheArr.push(scheArr[i]);
+			// 		}  
+			// 		i++;
+			// 	}
+			// 	//console.log('else matchTime: '+matchTime);
+			// 	$('#onTimeZone'+idVal).addClass("timeZoneSelected").siblings().removeClass("timeZoneSelected");
+			// 	$('#onTimeZone0').removeClass("timeZoneSelected")
+			// 	//console.log('new scheArr: '+scheArr);
+			// }
 			//与服务器的时间差
 			//debugger
-			console.log('selectMatchTime newScheArr: '+newScheArr);
-			ResetPageSche(newScheArr);
+			//console.log('selectMatchTime newScheArr: '+newScheArr);
+			ResetPageSche(newScheArr, typeNameFlag);
 		}
 
 		var timeArr = document.getElementById("timeZoneList").value;
 		timeArr = (new Function("return" + timeArr))();
 		currentZone = timeArr[timeZone + '_flag'];
 		//currentZone = timeArr['Asia/Muscat_flag'];
-		console.log('currentZone: ' + timeZone + ' ' + currentZone);
+		//console.log('currentZone: ' + timeZone + ' ' + currentZone);
 		if (currentZone >= 0) {
 			if (currentZone >= 8) {
 				currentZone = (Number(currentZone) - 8) * 60 * 60;
@@ -222,7 +285,7 @@
 			}
 		} else {
 			currentZone = currentZone.replace('-', '');
-			console.log('currentZone: ' + currentZone + ' | ' + (8 + Number(currentZone)));
+			//console.log('currentZone: ' + currentZone + ' | ' + (8 + Number(currentZone)));
 			currentZone = (8 + Number(currentZone)) * 60 * 60;
 		}
 
@@ -251,7 +314,7 @@
 		}
 		//debugger;
 
-		//worldcupTime('2022/11/21 00:00:00', '2022/12/02 23:00:00');
+		worldcupTime('2022/11/21 00:00:00', '2022/12/03 23:59:59');
 
 		//世界杯比赛时间
 		function worldcupTime(start, end) {
@@ -264,7 +327,7 @@
 			endFormatTime = endFormatTime - currentZone;
 			endFormatTime = getData(endFormatTime * 1000);
 
-			console.log("worldcupTime:"+startFormatTime + ' / ' + endFormatTime);
+			//console.log("worldcupTime:"+startFormatTime + ' / ' + endFormatTime);
 
 			var timeList = dealDate(startFormatTime, endFormatTime);
 
@@ -273,16 +336,19 @@
 			let weekArrayList = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
 			//let weekArrayList = [ 'Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
 
+			let slantRe = new RegExp(/\//, "g");
+
 			for (var i = 0; i < timeList.length; i++) {
 				if (i == 0) {
 					miniStreamViewTwo = 'miniStreamViewTwo';
 				} else {
 					miniStreamViewTwo = '';
 				}
+				let idTimeZone = timeList[i].replace(slantRe, '');
 				let index = new Date(timeList[i]).getDay();
 				let week = weekArrayList[index];
 				//console.log("worldcupTime for:"+timeList[i]);
-				htmlWorldcup += "<div class=\"miniStreamView " + miniStreamViewTwo + "\" onclick=\"selectMatchTime('"+ timeList[i] +"')\">";
+				htmlWorldcup += "<div class=\"miniStreamView onTimeZoneList " + miniStreamViewTwo + "\" id=\"onTimeZone" + idTimeZone + "\" onclick=\"selectMatchTime('"+ timeList[i] +"')\">";
 				htmlWorldcup += "	<div>" + week + "</div>";
 				htmlWorldcup += "	<div>" + matchFormatDate(timeList[i], "MM-dd") + "</div>";
 				htmlWorldcup += "</div>";
@@ -343,6 +409,8 @@
 		InitPageSche();
 
 		function SelectWCGroup(selIndex) {
+			$("#worldcupTimeZoneList").val(selIndex);
+
 			if (selGroupIndex == selIndex) return;
 
 			document.getElementById("group_btn" + selGroupIndex).className = "";
@@ -355,39 +423,40 @@
 		}
 
 		function SelectGroupSubMenu(selIndex, typeName) {
+			$('#onTimeZone0').removeClass("timeZoneSelected");
+			$("#worldcupTimeZoneList").val(selIndex);
 			//条件日期区间定位
 			var start = '2022/11/21 00:00:00';
-			var end = '2022/12/02 23:00:00';
+			var end = '2022/12/03 23:59:59';
 			switch(selIndex){
 				case 0:
 					start = '2022/11/21 00:00:00';
-					end = '2022/12/02 23:00:00';
+					end = '2022/12/03 23:59:59';
 					break;
 				case 1:
-					start = '2022/12/03 23:00:00';
-					end = '2022/12/07 03:00:00';
+					start = '2022/12/03 00:00:00';
+					end = '2022/12/07 23:59:59';
 					break;
 				case 2:
-					start = '2022/12/09 23:00:00';
-					end = '2022/12/11 03:00:00';
+					start = '2022/12/09 00:00:00';
+					end = '2022/12/11 23:59:59';
 					break;
 				case 3:
-					start = '2022/12/14 03:00:00';
-					end = '2022/12/15 03:00:00';
+					start = '2022/12/14 00:00:00';
+					end = '2022/12/15 23:59:59';
 					break;
 				case 4:
-					start = '2022/12/17 23:00:00';
-					end = '2022/12/18 23:00:00';
+					start = '2022/12/17 00:00:00';
+					end = '2022/12/18 23:59:59';
 					break;
 				default:
 					start = '2022/11/21 00:00:00';
-					end = '2022/12/02 23:00:00';
-					
+					end = '2022/12/03 23:59:59';
 			}
-			//worldcupTime(start, end);
+			worldcupTime(start, end);
 			//初始化列表数据
 			//debugger
-			ResetPageSche(scheArr)
+			ResetPageSche(scheArr, '分组赛')
 
 			if (selGroupSubMenu == selIndex || isInRefreshing) return;
 
