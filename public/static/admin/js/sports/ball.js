@@ -28,7 +28,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     {field: 'match_won', minWidth: 80, title: '胜'},
                     {field: 'match_got', minWidth: 80, title: '平'},
                     {field: 'match_lost', minWidth: 80, title: '负'},
-                    {field: 'match_ga', minWidth: 80, title: '进球'},
+                    {field: 'match_ga', minWidth: 80, title: '进胜球'},
                     {field: 'match_pts', minWidth: 80, title: '积分'},
                     /*{width: 250, title: '操作', templet: ea.table.tool},*/
                     {
