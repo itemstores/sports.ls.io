@@ -184,8 +184,8 @@
 
 		var timeArr = document.getElementById("timeZoneList").value;
 		timeArr = (new Function("return" + timeArr))();
-		//currentZone = timeArr[timeZone + '_flag'];
-		currentZone = timeArr['Europe/London_flag'];
+		currentZone = timeArr[timeZone + '_flag'];
+		//currentZone = timeArr['Europe/London_flag'];
 		//console.log('currentZone: ' + timeZone + ' ' + currentZone);
 		if (currentZone >= 0) {
 			if (currentZone >= 8) {
@@ -370,6 +370,8 @@
 		//日期遍历
 		function dealDate(start, end) {
 			let dateList = [];
+			start = start.substring(0, 10);
+			end = end.substring(0, 10);
 			var startTime = new Date(start);;
 			var endTime = new Date(end);;
 

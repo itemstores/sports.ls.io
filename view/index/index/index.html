@@ -330,10 +330,10 @@
 			var endFormatTime = new Date(end).getTime() / 1000;
 			endFormatTime = endFormatTime - currentZone;
 			endFormatTime = getData(endFormatTime * 1000);
-
-			//console.log("worldcupTime:"+startFormatTime + ' / ' + endFormatTime);
-
+			
 			var timeList = dealDate(startFormatTime, endFormatTime);
+
+			//console.log("worldcupTime:"+startFormatTime + ' / ' + endFormatTime + ' timeList:' + timeList);
 
 			var htmlWorldcup = '';
 			var miniStreamViewTwo = '';
@@ -393,8 +393,10 @@
 		//日期遍历
 		function dealDate(start, end) {
 			let dateList = [];
-			var startTime = new Date(start);;
-			var endTime = new Date(end);;
+			start = start.substring(0, 10);
+			end = end.substring(0, 10);
+			var startTime = new Date(start);
+			var endTime = new Date(end);
 
 			while ((endTime.getTime() - startTime.getTime()) >= 0) {
 				var year = startTime.getFullYear();
