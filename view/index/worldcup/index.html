@@ -195,7 +195,7 @@
 			}
 		} else {
 			currentZone = currentZone.replace('-', '');
-			console.log('currentZone: ' + currentZone + ' | ' + (8 + Number(currentZone)));
+			//console.log('currentZone: ' + currentZone + ' | ' + (8 + Number(currentZone)));
 			currentZone = (8 + Number(currentZone)) * 60 * 60;
 		}
 
@@ -286,7 +286,7 @@
 					end = endFormatTime.substring(0, 10);
 					end = end.replace(cutRe, '/');
 				}
-				console.log('startFormatTime ' + startFormatTime + ' endFormatTime '+ endFormatTime);
+				//console.log('startFormatTime ' + startFormatTime + ' endFormatTime '+ endFormatTime);
 				
 				for(var k=0; k<scheArr.length;) {
 					if(scheArr[k][33] >= start && scheArr[k][33] <= end) {
@@ -296,7 +296,7 @@
 					k++;
 				}
 				//console.log('if newScheArr: '+newScheArr);
-				console.log('idVal:'+idVal);
+				//console.log('idVal:'+idVal);
 				if (idVal == 0){
 					$('#onTimeZone0').addClass("timeZoneSelected");
 					$('.onTimeZoneList').removeClass("timeZoneSelected");
@@ -307,7 +307,7 @@
 				
 			//与服务器的时间差
 			//debugger
-			console.log(newScheArr + '==============')
+			//console.log(newScheArr + '==============')
 			//console.log('selectMatchTime newScheArr: '+newScheArr);
 			ResetPageSche(newScheArr, typeNameFlag);
 		}
