@@ -651,6 +651,18 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
     transform: rotate(180deg);
 }
 
+.vs_home_goals {
+    color: #000;
+    font-size: 12px;
+    padding-right: 2rem;
+}
+
+.vs_away_goals {
+    color: #000;
+    font-size: 12px;
+    padding-left: 2rem;
+}
+
 /* footer start */
 
 footer {

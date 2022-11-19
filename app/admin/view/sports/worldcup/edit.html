@@ -19,6 +19,7 @@
             <label class="layui-form-label">主队信息</label>
             <div class="layui-input-block">
             	<span><img class="group-table-td-i" src="/static/index/images/worldcup/{$row->home_flag}.png" /> {$row->home_team} &nbsp;&nbsp;</span>
+                <div class="edit_input_top5"></div>
                 让分 / 赔率:
 				<div class="layui-input-block select-width10">
 		           <select name="home_let_score" id="home_point" lay-verify="required" lay-filter="home_point_xmFilter">
@@ -30,6 +31,7 @@
                 <input type="text" name="home_let_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_let_score|default=''}" />
                  -->
                 <input type="text" name="home_let_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_let_odds|default=''}" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="edit_input_top5"></div>
                 大小 / 赔率:
                 <div class="layui-input-block select-width10">
 		           <select name="home_size_score" id="home_ou" lay-verify="required" lay-filter="home_ou_xmFilter">
@@ -40,7 +42,10 @@
                 <input type="text" name="home_size_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_size_init|default=''}" />
                 <input type="text" name="home_size_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_size_score|default=''}" />
                  -->
-                <input type="text" name="home_size_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_size_odds|default=''}" />
+                <input type="text" name="home_size_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_size_odds|default=''}" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="edit_input_top5"></div>
+                赛果：
+                <input type="text" name="home_goals" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.home_goals|default=''}" /> <small class="title_desc_grey">只有为减号 <label class="title_desc_red">-</label> 时,前端才不显示</small>
             </div>
         </div>
 
@@ -48,6 +53,7 @@
             <label class="layui-form-label">客队信息</label>
             <div class="layui-input-block">
             	<span><img class="group-table-td-i" src="/static/index/images/worldcup/{$row->away_flag}.png" /> {$row->away_team} &nbsp;&nbsp;</span>
+                <div class="edit_input_top5"></div>
                 让分 / 赔率:
 				<div class="layui-input-block select-width10">
 		           <select name="away_let_score" id="away_point" lay-verify="required" lay-filter="away_point_xmFilter">
@@ -59,6 +65,7 @@
                 <input type="text" name="away_let_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_let_score|default=''}" />
                  -->
                 <input type="text" name="away_let_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_let_odds|default=''}" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="edit_input_top5"></div>
                 大小 / 赔率:
                 <div class="layui-input-block select-width10">
 		           <select name="away_size_score" id="away_ou" lay-verify="required" lay-filter="away_ou_xmFilter">
@@ -69,7 +76,10 @@
                 <input type="text" name="away_size_init" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_size_init|default=''}" />
                 <input type="text" name="away_size_score" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_size_score|default=''}" />
                  -->
-                <input type="text" name="away_size_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_size_odds|default=''}" />
+                <input type="text" name="away_size_odds" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_size_odds|default=''}" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="edit_input_top5"></div>
+                赛果：
+                <input type="text" name="away_goals" class="layui-input width-input10" lay-verify="required" placeholder="" value="{$row.away_goals|default=''}" /> <small class="title_desc_grey">只有为减号 <label class="title_desc_red">-</label> 时,前端才不显示</small>
             </div>
         </div>
 

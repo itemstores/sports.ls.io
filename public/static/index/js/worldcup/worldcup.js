@@ -64,6 +64,8 @@ function WCSche(dataArr) {
     this.homeTeamEn = dataArr[30]; //主队英文
     this.awayTeamEn = dataArr[31]; //客队英文
     this.groupNameEn = dataArr[32].split('^')[1]; //小组英文
+    this.homeGoals = dataArr[35]; //主队赛果
+    this.awayGoals = dataArr[36]; //客队赛果
     if (WCTeamIdArr.indexOf(parseInt(this.homeTeamId)) > -1) {
         this.homeFlag = "/static/index/images/worldcup/" + this.homeTeamId + ".png";
     }
@@ -138,6 +140,8 @@ function ScheLiveChange(data) {
     this.homeTeamEn = dataArr[30]; //主队英文
     this.awayTeamEn = dataArr[31]; //客队英文
     this.groupNameEn = dataArr[32].split('^')[1]; //小组英文
+    this.homeGoals = dataArr[35]; //主队赛果
+    this.awayGoals = dataArr[36]; //客队赛果
 }
 
 //-------------------------- 页面 ---------------------------------------------------------
@@ -212,6 +216,8 @@ function ShowScheList(scheKind, scheKindIndex) {
         var groupFlag = (pathnameValue == '/') ? " 组" : " Group";
         var matchTimeFormat = (pathnameValue == '/') ? FormatWCTime(scheObj.matchTime, 1) : matchFormatDate("2022-" + FormatWCTime(scheObj.matchTime, 1));
         var groupTop = (scheObj.groupName ? (scheObj.groupName + groupFlag) : scheObj.kind);
+        var homeGoals = (scheObj.homeGoals == '-') ? '' : scheObj.homeGoals;
+        var awayGoals = (scheObj.awayGoals == '-') ? '' : scheObj.awayGoals;
         if (pathnameValue != '/') {
             groupTop = groupTop.replace("8强", "Quarter Final");
             groupTop = groupTop.replace("16强", "Round of 16");
@@ -258,7 +264,7 @@ function ShowScheList(scheKind, scheKindIndex) {
                 htmlArr.push("    <div class=\"matchStateFlag2\"><lable>" + isEnd + "</lable></div>");
             }
 
-            htmlArr.push("    <div class=\"name " + FormatScoreClass(scheObj) + "\" id=\"" + scheObj.scheduleid + "_score\">" + FormatScore(scheObj) + "</div>");
+            htmlArr.push("    <div class=\"name " + FormatScoreClass(scheObj) + "\" id=\"" + scheObj.scheduleid + "_score\"><small class=\"vs_home_goals\">" + homeGoals + "</small>" + FormatScore(scheObj) + "<small class=\"vs_away_goals\">" + awayGoals + "</small></div>");
 
             if (scheObj.openState == 0) {
                 htmlArr.push("    <div class=\"oddsbg\">");

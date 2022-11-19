@@ -678,3 +678,15 @@ table閺嶅嘲绱�
     display: inline-block;
     margin-left: 0px;
 }
+
+.edit_input_top5 {
+    margin-top: 5px;
+}
+
+.title_desc_red {
+    color: red;
+}
+
+.title_desc_grey {
+    color: grey;
+}
