@@ -529,6 +529,7 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 .oddsdbTopR{
 	border-top-right-radius: 5px;
     padding-left: 4px;
+    margin-top: 2px;
 }
 
 .oddsdbBottomR{
@@ -539,6 +540,7 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 .oddsdbTopL{
 	border-top-left-radius: 5px;
     padding-right: 4px;
+    margin-top: 2px;
 }
 
 .oddsdbBottomL{
