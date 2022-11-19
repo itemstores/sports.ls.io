@@ -15,8 +15,8 @@ class Developer extends BaseController
      */
     public function index()
     {
-        // $timeZone = getTimeZone();
-        // print_r($timeZone); exit;
+        $timeZone = getTimeZone();
+        print_r($timeZone); exit;
 
         $timeZone = [];
 

@@ -19,6 +19,9 @@ class Index extends BaseController
      */
     public function index()
     {
+        // $timeZone = getTimeZone();
+        // print_r($timeZone); exit;
+
         $ball = $this->ballModel::getSelectAll();
         
         $match_ball = [];

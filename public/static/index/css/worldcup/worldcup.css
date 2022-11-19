@@ -491,8 +491,22 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 } 
 
 .oddsFontSize {
-	font-size: 12px;
+    font-size: 12px;
     font-weight: bold;
+}
+.guest  .oddsFontSize {
+    width: 105px;
+    display: inline-block;
+}
+.oddsFontSize lable:first-child {
+	display: inline-block;
+    width: 55%;
+    text-align: right;
+    margin-right: -3px;
+}
+
+.vsLableCenter {
+    text-align: center !important;
 }
 
 .lableLeft {

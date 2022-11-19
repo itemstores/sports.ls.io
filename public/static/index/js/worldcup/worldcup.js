@@ -262,22 +262,22 @@ function ShowScheList(scheKind, scheKindIndex) {
 
             if (scheObj.openState == 0) {
                 htmlArr.push("    <div class=\"oddsbg\">");
-                htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable>" + isUnopened + "</lable><span>");
+                htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable class=\"vsLableCenter\">" + isUnopened + "</lable><span>");
                 htmlArr.push("    </div>");
             }
 
             if (scheObj.openState == 1) {
                 htmlArr.push("    <div class=\"oddsbg\">");
-                htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable>" + isOdds + "</lable><span>");
+                htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable class=\"vsLableCenter\">" + isOdds + "</lable><span>");
                 htmlArr.push("    </div>");
                 htmlArr.push("    <div class=\"oddsbg\">");
-                htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + isSize + "<span>");
+                htmlArr.push("      <span class=\"oddsFontSize\"><lable class=\"vsLableCenter\">" + isSize + "<span>");
                 htmlArr.push("    </div>");
             }
 
             if (scheObj.openState == 2) {
                 htmlArr.push("    <div class=\"oddsbg\">");
-                htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable>" + isClosed + "</lable><span>");
+                htmlArr.push("      <span class=\"oddsFontSize msg oddsTriangleUp\"><lable class=\"vsLableCenter\">" + isClosed + "</lable><span>");
                 htmlArr.push("    </div>");
             }
 
