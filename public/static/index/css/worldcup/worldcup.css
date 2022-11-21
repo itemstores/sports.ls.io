@@ -656,13 +656,13 @@ againstEchart .double-round .ranks-son .name-box p:first-child, .againstEchart .
 .vs_home_goals {
     color: #000;
     font-size: 12px;
-    padding-right: 2rem;
+    padding-right: 3vw;
 }
 
 .vs_away_goals {
     color: #000;
     font-size: 12px;
-    padding-left: 2rem;
+    padding-left: 3vw;
 }
 
 /* footer start */

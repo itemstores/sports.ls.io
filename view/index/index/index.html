@@ -352,10 +352,20 @@
 				let idTimeZone = timeList[i].replace(slantRe, '');
 				let index = new Date(timeList[i]).getDay();
 				let week = weekArrayList[index];
-				//console.log("worldcupTime for:"+timeList[i]);
-				htmlWorldcup += "<div class=\"miniStreamView onTimeZoneList " + miniStreamViewTwo + "\" id=\"onTimeZone" + idTimeZone + "\" onclick=\"selectMatchTime('"+ timeList[i] +"')\">";
-				htmlWorldcup += "	<div>" + week + "</div>";
-				htmlWorldcup += "	<div>" + matchFormatDate(timeList[i], "MM-dd") + "</div>";
+				// console.log("worldcupTime for:"+timeList[i]+' | today:'+matchFormatDate('', "yyyy/MM/dd"));
+				// if(matchFormatDate('', "yyyy/MM/dd") == timeList[i]){
+				// 	timeZoneSelected = " timeZoneSelected";
+				// } else {
+					timeZoneSelected = "";
+				// }
+				htmlWorldcup += "<div class=\"miniStreamView onTimeZoneList " + miniStreamViewTwo + timeZoneSelected + "\" id=\"onTimeZone" + idTimeZone + "\" onclick=\"selectMatchTime('"+ timeList[i] +"')\">";
+				// if(matchFormatDate('', "yyyy/MM/dd") == timeList[i]){
+				// 	htmlWorldcup += "	<div>今天</div>";
+				// 	htmlWorldcup += "	<div>" + matchFormatDate(timeList[i], "MM-dd") + "</div>";
+				// } else {
+					htmlWorldcup += "	<div>" + week + "</div>";
+					htmlWorldcup += "	<div>" + matchFormatDate(timeList[i], "MM-dd") + "</div>";
+				// }
 				htmlWorldcup += "</div>";
 			}
 			document.getElementById("htmlWorldcup").innerHTML = htmlWorldcup;
@@ -363,7 +373,11 @@
 
 		//日期格式化
 		function matchFormatDate(date, fmt) {
-			date = new Date(date);
+			if(date == '' || date == undefined){
+				date = new Date();
+			} else {
+				date = new Date(date);
+			}
 			//获取年份
 			if (/(y+)/.test(fmt)) {
 				// 把数字变成字符串
