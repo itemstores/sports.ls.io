@@ -225,7 +225,7 @@ function ShowScheList(scheKind, scheKindIndex) {
             groupTop = groupTop.replace("季军赛", "Finals");
             groupTop = groupTop.replace("决赛", "Finals");
         }
-        if (isShow) {
+        if (isShow && scheObj.openStateFlag != 2) {
             htmlArr.push("<div class=\"match\" id=\"match_" + scheObj.scheduleid + "\" >");
             //htmlArr.push("<div class=\"match\" id=\"match_" + scheObj.scheduleid + "\" onclick=\"ToFenXi(" + scheObj.scheduleid + ")\">");
             // htmlArr.push("  <div class=\"settop" + (IsAttension(scheObj.scheduleid) ? " on" : "") + "\" onclick=\"AddAtten(" + scheObj.scheduleid + ",this,event)\"></div>");
