@@ -177,6 +177,7 @@ function InitPageSche() {
     window.setInterval(ShowStatePerMinute, 60 * 1000);
 }
 function ResetPageSche(scheArr, typeName) {
+    //console.log('ResetPageSche:'+scheArr);
     WCScheArr = [];
     for (var i = 0; i < scheArr.length; i++) {
         var scheObj = new WCSche(scheArr[i]);
@@ -214,7 +215,7 @@ function ShowScheList(scheKind, scheKindIndex) {
         var scheObj = WCScheArr[i];
         var isShow = scheKind ? (scheKind == "决赛" ? ["决赛", "季军赛"].indexOf(scheObj.kind) > -1 : scheObj.kind == scheKind) : true;
         var groupFlag = (pathnameValue == '/') ? " 组" : " Group";
-        var matchTimeFormat = (pathnameValue == '/') ? FormatWCTime(scheObj.matchTime, 1) : matchFormatDate("2022-" + FormatWCTime(scheObj.matchTime, 1));
+        var matchTimeFormat = (pathnameValue == '/') ? FormatWCTime(scheObj.matchTime, 1) : matchFormatDateEn("2022-" + FormatWCTime(scheObj.matchTime, 1));
         var groupTop = (scheObj.groupName ? (scheObj.groupName + groupFlag) : scheObj.kind);
         var homeGoals = (scheObj.homeGoals == '-' || scheObj.homeGoals == undefined) ? '' : scheObj.homeGoals;
         var awayGoals = (scheObj.awayGoals == '-' || scheObj.awayGoals == undefined) ? '' : scheObj.awayGoals;
@@ -225,7 +226,7 @@ function ShowScheList(scheKind, scheKindIndex) {
             groupTop = groupTop.replace("季军赛", "Finals");
             groupTop = groupTop.replace("决赛", "Finals");
         }
-        if (isShow && scheObj.openStateFlag != 2) {
+        if (isShow) {
             htmlArr.push("<div class=\"match\" id=\"match_" + scheObj.scheduleid + "\" >");
             //htmlArr.push("<div class=\"match\" id=\"match_" + scheObj.scheduleid + "\" onclick=\"ToFenXi(" + scheObj.scheduleid + ")\">");
             // htmlArr.push("  <div class=\"settop" + (IsAttension(scheObj.scheduleid) ? " on" : "") + "\" onclick=\"AddAtten(" + scheObj.scheduleid + ",this,event)\"></div>");
@@ -323,7 +324,8 @@ function ShowScheList(scheKind, scheKindIndex) {
     document.getElementById("MatchContainer").innerHTML = htmlArr.join("");
 }
 
-function matchFormatDate(date) {
+function matchFormatDateEn(date) {
+    //console.log('worldcup.js matchFormatDate:'+matchFormatDate);
     date = new Date(date.replace(/-/g, '/')); //Wed Jan 02 2019 00:00:00 GMT+0800 (China Standard Time)
     var chinaDate = date.toDateString(); //"Tue, 01 Jan 2019 16:00:00 GMT"
     //注意：此处时间为中国时区，如果是全球项目，需要转成【协调世界时】（UTC）
@@ -331,7 +333,7 @@ function matchFormatDate(date) {
     //之后的处理是一样的
     var chinaDateArray = chinaDate.split(' ');
     var displayDate = `${chinaDateArray[1]} ${chinaDateArray[2]}`; //"Jan XX"
-    console.log(displayDate);
+    //console.log(displayDate);
     return displayDate;
 }
 
