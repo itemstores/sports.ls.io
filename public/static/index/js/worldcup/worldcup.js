@@ -307,10 +307,10 @@ function ShowScheList(scheKind, scheKindIndex) {
             if (scheObj.openState == 1) {
                 var scoreVal = addSpacePrice(scheObj.awayLetScore, scheObj.awaySizeScore);
                 htmlArr.push("    <div class=\"oddsbg oddsdbTopR\">");
-                htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scoreVal[0] + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awayLetOdds + "</lable><span>");
+                htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.awayLetScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awayLetOdds + "</lable><span>");
                 htmlArr.push("    </div>");
                 htmlArr.push("    <div class=\"oddsbg oddsdbBottomR\">");
-                htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scoreVal[1] + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awaySizeOdds + "</lable><span>");
+                htmlArr.push("      <span class=\"oddsFontSize\"><lable>" + scheObj.awaySizeScore + "</lable><lable class=\"oddsColor lableLeft\">" + scheObj.awaySizeOdds + "</lable><span>");
                 htmlArr.push("    </div>");
             }
 
