@@ -243,28 +243,29 @@
 			if (matchTime !== 0) {
 				start = matchTime + ' 00:00:00'
 				end = matchTime + ' 23:59:59'
-				// debugger
-				//console.log('if start:' + start + ' end:'+ end);
-				// var startFormatTime = new Date(start).getTime() / 1000;
-				// startFormatTime = startFormatTime - currentZone;
-				// startFormatTime = getData(startFormatTime * 1000);
-				// //start = startFormatTime.substring(0, 10);
-				// start = startFormatTime.replace(cutRe, '/');
-
-				// var endFormatTime = new Date(end).getTime() / 1000;
-				// endFormatTime = endFormatTime - currentZone;
-				// endFormatTime = getData(endFormatTime * 1000);
-				// //end = endFormatTime.substring(0, 10);
-				// end = endFormatTime.replace(cutRe, '/');
-				
 				//滚动条定位
 				let indexId = document.getElementById('onTimeZone' + idVal).getAttribute('ind')
 				
 				if (selIndex == 0 && indexId>2) {
 					document.getElementById('htmlWorldcup').scrollLeft = document.getElementById('onTimeZone' + idVal).scrollWidth + parseInt(indexId) * 43;
 				}
-			} 
-			//console.log('matchTime:' + matchTime + ' start:' + startFormatTime + ' end:'+ endFormatTime);
+			} else {
+				// debugger
+				console.log('else start start:' + start + ' end:'+ end);
+				var startFormatTime = new Date(start).getTime() / 1000;
+				startFormatTime = startFormatTime - currentZone;
+				startFormatTime = getData(startFormatTime * 1000);
+				//start = startFormatTime.substring(0, 10);
+				start = startFormatTime.replace(cutRe, '/');
+
+				var endFormatTime = new Date(end).getTime() / 1000;
+				endFormatTime = endFormatTime - currentZone;
+				endFormatTime = getData(endFormatTime * 1000);
+				//end = endFormatTime.substring(0, 10);
+				end = endFormatTime.replace(cutRe, '/');
+				console.log('else end start:' + start + ' end:'+ end);
+			}
+			//console.log('matchTime:' + matchTime + ' start:' + start + ' end:'+ end);
 			//debugger
 			for(var k=0; k<scheArr.length;) {
 				if(scheArr[k][34] >= start && scheArr[k][34] <= end) {
