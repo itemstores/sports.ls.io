@@ -251,7 +251,7 @@
 				}
 			} else {
 				// debugger
-				console.log('else start start:' + start + ' end:'+ end);
+				//console.log('else start start:' + start + ' end:'+ end);
 				var startFormatTime = new Date(start).getTime() / 1000;
 				startFormatTime = startFormatTime - currentZone;
 				startFormatTime = getData(startFormatTime * 1000);
@@ -263,7 +263,7 @@
 				endFormatTime = getData(endFormatTime * 1000);
 				//end = endFormatTime.substring(0, 10);
 				end = endFormatTime.replace(cutRe, '/');
-				console.log('else end start:' + start + ' end:'+ end);
+				//console.log('else end start:' + start + ' end:'+ end);
 			}
 			//console.log('matchTime:' + matchTime + ' start:' + start + ' end:'+ end);
 			//debugger
