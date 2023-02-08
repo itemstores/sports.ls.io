@@ -679,6 +679,12 @@ table閺嶅嘲绱�
     margin-left: 0px;
 }
 
+.select-width20 {
+    width: 20%;
+    display: inline-block;
+    margin-left: 0px;
+}
+
 .edit_input_top5 {
     margin-top: 5px;
 }
@@ -689,4 +695,96 @@ table閺嶅嘲绱�
 
 .title_desc_grey {
     color: grey;
+}
+
+.vision_form_flex {
+    display: flex;
+}
+
+.layui-form-radio {
+    display: inline-block;
+    vertical-align: none;
+    line-height: 30px;
+    margin: 0;
+    padding-right: 0;
+    cursor: pointer;
+    font-size: 0;
+}
+
+.layui-form-radio>i {
+    margin: 0;
+}
+
+.layui-form-table {
+    width: 100%;
+    margin-left: 0px;
+}
+
+.layui-form-table table{
+    width: 100%;
+}
+
+.layui-form-table tbody {
+    text-align: center;
+}
+
+.layui-form-table tbody tr td input{
+    width: 35%;
+    margin: auto;
+    margin-bottom: 3px;
+}
+
+.td-flex{
+    display: flex;
+    width: 35%;
+    margin: auto;
+}
+
+.td-flex input{
+    width: 50% !important;
+}
+
+.layui-form-table-edit {
+    width: 100%;
+    margin-left: 0px;
+}
+
+.layui-form-table-edit table{
+    width: 100%;
+}
+
+.layui-form-table-edit tbody, .layui-form-table-edit th {
+    text-align: left;
+}
+
+.layui-form-table-edit tbody tr td input{
+    width: 35%;
+    margin-bottom: 3px;
+}
+
+.vision-edit-record {
+    padding: 0 20px;
+}
+
+.vision-edit-record label{
+    padding: 0 5px;
+    border: 1px solid #1a73e8;
+    margin-right: 3px;
+    border-radius: 5px;
+}
+
+.vision-edit-record h3{
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #1a73e8;
+}
+
+.layui-form-item {
+    margin-bottom: 5px;
+}
+
+.vision-read-record label{
+    font-weight: bold;
+    color: #032653;
+    border: 0;
 }

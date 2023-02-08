@@ -1,0 +1,242 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+        <div class="layui-form-item vision_form_flex">
+            <label class="layui-form-label">会员卡号</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="member" class="layui-input" lay-verify="required" placeholder="请输会员卡号" value="">
+            </div>
+
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="name" class="layui-input" lay-verify="required" placeholder="请输入姓名" value="">
+            </div>
+
+            <label class="layui-form-label">电话</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="phone" class="layui-input" lay-verify="required" placeholder="请输入电话" value="">
+            </div>
+        </div>
+
+        <div class="layui-form-item vision_form_flex">
+            <label class="layui-form-label">年龄</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="age" class="layui-input" placeholder="年龄" value="">
+            </div>
+
+            <label class="layui-form-label">生日</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" id="yearCode" name="birthday" class="layui-input" placeholder="生日">
+            </div>
+
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block select-width10">
+                <input type="radio" name="sex" value="0" /> 男 &nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="sex" value="1" /> 女
+            </div>
+        </div>
+
+        <div class="layui-form-item vision_form_flex">
+            <label class="layui-form-label">职业</label>
+            <div class="layui-input-block select-width10">
+                <select name="occupation" lay-filter="home_point_xmFilter">
+                    <option value="5">其他</option>
+                    <option value="4">大学</option>
+                    <option value="3">高中</option>
+                    <option value="2">中学</option>
+                    <option value="1">小学</option>
+                    <option value="0">幼小</option>
+                </select>
+            </div>
+
+            <label class="layui-form-label">配镜类型</label>
+            <div class="layui-input-block select-width10">
+                <select name="vision_type" lay-filter="home_point_xmFilter">
+                    <option value="4">其他</option>
+                    <option value="3">花眼</option>
+                    <option value="2">弱视</option>
+                    <option value="1">远视</option>
+                    <option value="0">近视</option>
+                </select>
+            </div>
+
+            <label class="layui-form-label">戴镜历史</label>
+            <div class="layui-input-block select-width10">
+                <select name="glasses" lay-filter="home_point_xmFilter">
+                    <option value="2">其他</option>
+                    <option value="1">有</option>
+                    <option value="0">无</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item vision_form_flex">
+            <label class="layui-form-label">镜片明细</label>
+            <div class="layui-input-block layui-form-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>配镜处方</th>
+                            <th>球镜SPH</th>
+                            <th>柱镜CYL</th>
+                            <th>轴位AX</th>
+                            <th>瞳距MM</th>
+                            <th>瞳高MM</th>
+                            <th>下加光ADD</th>
+                            <th>矫正视力</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>右(R)</td>
+                            <td><input type="text" name="r_sph" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="r_cyl" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="r_ax" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="r_ipd" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="r_iph" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="r_add" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="r_correct" class="layui-input" placeholder="0" value=""></td>
+                        </tr>
+                        <tr>
+                            <td>左(L)</td>
+                            <td><input type="text" name="l_sph" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="l_cyl" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="l_ax" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="l_ipd" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="l_iph" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="l_add" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="l_correct" class="layui-input" placeholder="0" value=""></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="layui-form-item vision_form_flex">
+            <label class="layui-form-label">验光师</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="optometry" class="layui-input" placeholder="" value="">
+            </div>
+
+            <label class="layui-form-label">配镜师</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="optician" class="layui-input" placeholder="" value="">
+            </div>
+
+            <label class="layui-form-label">质检员</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="quality" class="layui-input" placeholder="" value="">
+            </div>
+        </div>
+
+        <div class="layui-form-item vision_form_flex">
+            <label class="layui-form-label">镜架材料</label>
+            <div class="layui-input-block select-width10">
+                <select name="frame" lay-filter="home_point_xmFilter">
+                    <option value="4">其他</option>
+                    <option value="3">钛材镜架</option>
+                    <option value="2">合金镜架</option>
+                    <option value="1">记忆镜架</option>
+                    <option value="0">板材镜架</option>
+                </select>
+            </div>
+
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="frame_name" class="layui-input" placeholder="" value="">
+            </div>
+
+            <label class="layui-form-label">型号</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="model" class="layui-input" placeholder="" value="">
+            </div>
+
+            <label class="layui-form-label">颜色</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="color" class="layui-input" placeholder="" value="">
+            </div>
+        </div>
+
+        <div class="layui-form-item vision_form_flex">
+            <label class="layui-form-label">镜片名称</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="lens_name" class="layui-input" placeholder="" value="">
+            </div>
+
+            <label class="layui-form-label">折射率</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="refraction" class="layui-input" placeholder="" value="">
+            </div>
+
+            <label class="layui-form-label">膜层</label>
+            <div class="layui-input-block select-width10">
+                <input type="text" name="film" class="layui-input" placeholder="" value="">
+            </div>
+        </div>
+
+        <div class="layui-form-item vision_form_flex">
+            <label class="layui-form-label">价格明细</label>
+            <div class="layui-input-block layui-form-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>序列</th>
+                            <th>原价</th>
+                            <th>单位</th>
+                            <th>折扣(0无折扣)</th>
+                            <th>优惠价格</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>镜片价格</td>
+                            <td><input type="text" name="lens_price" class="layui-input" placeholder="0" value=""></td>
+                            <td class="td-flex"><input type="text" name="lens_number" class="layui-input" placeholder="0" value=""><label>副 / 对</label></td>
+                            <td><input type="text" name="lens_discount" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="lens_discount_price" class="layui-input" placeholder="0" value=""></td>
+                        </tr>
+                        <tr>
+                            <td>镜架价格</td>
+                            <td><input type="text" name="frame_price" class="layui-input" placeholder="0" value=""></td>
+                            <td><div class="td-flex"><input type="text" name="frame_number" class="layui-input" placeholder="0" value=""><label>副 / 架</label><div></td>
+                            <td><input type="text" name="frame_discount" class="layui-input" placeholder="0" value=""></td>
+                            <td><input type="text" name="frame_discount_price" class="layui-input" placeholder="0" value=""></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="layui-form-item vision_form_flex">
+            <label class="layui-form-label">总原价金额</label>
+            <div class="layui-input-block select-width20">
+                <input type="text" name="total_price" class="layui-input" placeholder="" value="">
+            </div>
+
+            <label class="layui-form-label">总实收金额</label>
+            <div class="layui-input-block select-width20">
+                <input type="text" name="actual_price" class="layui-input" placeholder="" value="">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注信息</label>
+            <div class="layui-input-block">
+                <textarea name="remarks" class="layui-textarea" placeholder="请输入备注信息"></textarea>
+            </div>
+        </div>
+
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>
+
+<script type="text/javascript" src="/static/common/js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+layui.laydate.render({
+    elem: '#yearCode' ,//input的id
+　　 type: 'date'//年月日，也是默认，不要这个也可以
+});
+</script>

@@ -62,6 +62,13 @@ $ul_system_quick = array(
         "href" => "sports.worldcup/index",
         "sort" => 0,
         "status" => 1,
+    ),
+    array(
+        "title" => "店铺运营PROD",
+        "icon" => "fa fa-futbol-o",
+        "href" => "vision.users/index",
+        "sort" => 0,
+        "status" => 1,
     )
 );
 

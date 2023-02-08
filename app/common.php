@@ -288,6 +288,40 @@ if (!function_exists('getTimeZone')) {
     }
 }
 
+if (!function_exists('diamondOutput')) {
+    function diamondOutput($line = 10) {
+        $html = '';
+        for ($i = 1; $i <= $line; ++$i) {
+            for ($j = 1; $j <= $line - $i; ++$j) {
+                $html .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            }
+            for ($k = 1; $k <= 2 * $i - 1; ++$k) {
+                if ($k == 1 || $k == 2 * $i - 1) {
+                    $html .= "*";
+                } else {
+                    $html .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+            $html .= "<br>";
+        }
+    
+        for ($i = $line; $i >= 1; --$i) {
+            for ($j = 1; $j <= $line - $i; ++$j) {
+                $html .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            }
+            for ($k = 1; $k <= 2 * $i - 1; ++$k) {
+                if ($k == 1 || $k == 2 * $i - 1) {
+                    $html .= "*";
+                } else {
+                    $html .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+            $html .= "<br>";
+        }
+        return $html;
+    }
+}
+
 if (!function_exists('outputOffset')) {
     function outputOffset($offset) {
         $pre = $offset < 0 ? '-' : '+';

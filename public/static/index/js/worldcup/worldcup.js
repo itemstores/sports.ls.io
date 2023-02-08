@@ -223,7 +223,7 @@ function ShowScheList(scheKind, scheKindIndex) {
             groupTop = groupTop.replace("8强", "Quarter Final");
             groupTop = groupTop.replace("16强", "Round of 16");
             groupTop = groupTop.replace("准决赛", "Semi Final");
-            groupTop = groupTop.replace("季军赛", "Finals");
+            groupTop = groupTop.replace("季军赛", "3rd place");
             groupTop = groupTop.replace("决赛", "Finals");
         }
         if (groupTop == '准决赛') {
