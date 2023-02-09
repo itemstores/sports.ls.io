@@ -23,6 +23,7 @@ class Vision extends BaseController
 
         $users_result = $users->where(['phone' => $phone])->select()->toArray();
 
+        $record_result = [];
         if (!empty($users_result[0]['id'])) {
             $record_result = $record->where(['vision_users_id'=>$users_result[0]['id']])->order('create_time desc')->select()->toArray();
         }
@@ -32,7 +33,7 @@ class Vision extends BaseController
         $glasses = $record->glasses; //戴镜历史
         $frame = $record->frame; //镜架材料
 
-        View::assign(["version"=>time(), 'phone' => $phone, 'users'=>$users_result[0], 'record'=>$record_result, 'occupation'=>$occupation, 'vision_type'=>$vision_type, 'glasses'=>$glasses, 'frame'=>$frame]);
+        View::assign(["version"=>time(), 'phone' => $phone, 'users'=>!empty($users_result) ? $users_result[0] : [], 'record'=>$record_result, 'occupation'=>$occupation, 'vision_type'=>$vision_type, 'glasses'=>$glasses, 'frame'=>$frame]);
         return View::fetch();
     }
     

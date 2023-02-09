@@ -116,17 +116,15 @@
 			<button type="submit"></button>
 		</form>
 	</div>
-
+	{if $users != null}
 	<div class="vision-users-record">
 		<p>
 			<label>会员卡号：{$users.member|default=''}</label>
 			<label>姓名：{$users.name|default=''}</label>
 			<label>电话：{$users.phone|default=''}</label>
-			<label>年龄：{$users.age|default=''}</label>
-			<label>生日：{$users.birthday|default=''}</label>
-			<label>性别：{if $users.sex==0} 男 {else} 女 {/if}</label>
 		</p>
 		<div class="vision-record">
+			{if $record != null}
 			{foreach $record as $i=>$value}
 			<div class="record-info">
 				<h3>检测时间：{$value.create_time}</h3>
@@ -226,8 +224,10 @@
 
 			</div>
 			{/foreach}
+			{/if}
 		</div>
 	</div>
+	{/if}
 </body>
 
 </html>
