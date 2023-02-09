@@ -16,8 +16,8 @@ class Vision extends BaseController
      */
     public function index()
     {
-        $phone = isset($_GET['phone']) && !empty($_GET['phone']) ? intval($_GET['phone']) : '';
-
+        $phone = isset($_POST['phone']) && !empty($_POST['phone']) ? intval($_POST['phone']) : '';
+        
         $users = new VisionUsers();
         $record = new VisionRecord();
 
