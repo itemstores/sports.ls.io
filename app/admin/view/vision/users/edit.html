@@ -54,9 +54,9 @@
         {foreach $row.recordList as $i=>$value}
         <h3>检测时间：{$value.create_time}</h3>
         <div class="layui-form-item vision_form_flex">
-            <label>职业：{$value.occupation}</label>
-            <label>配镜类型：{$value.vision_type}</label>
-            <label>戴镜历史：{$value.glasses}</label>
+            <label>职业：{$occupation[$value.occupation]}</label>
+            <label>配镜类型：{$vision_type[$value.vision_type]}</label>
+            <label>戴镜历史：{$glasses[$value.glasses]}</label>
         </div>
         <div class="layui-form-item vision_form_flex">
             <div class="layui-input-block layui-form-table-edit">
@@ -104,7 +104,7 @@
             <label>质检员：{$value.quality}</label>
         </div>
         <div class="layui-form-item vision_form_flex">
-            <label>镜架材料：{$value.frame}</label>
+            <label>镜架材料：{$frame[$value.frame]}</label>
             <label>名称：{$value.frame_name}</label>
             <label>型号：{$value.model}</label>
             <label>颜色：{$value.color}</label>

@@ -164,6 +164,11 @@ class Users extends AdminController
         $list = $record->where(['vision_users_id'=>$row->id])->order('create_time desc')->select();
         $row->recordList = $list;
 
+        $occupation = $record->occupation; //职业
+        $vision_type = $record->vision_type; //配镜类型
+        $glasses = $record->glasses; //戴镜历史
+        $frame = $record->frame; //镜架材料
+
         if ($this->request->isPost()) {
             $post = $this->request->post();
             try {
@@ -174,7 +179,7 @@ class Users extends AdminController
             $save ? $this->success('保存成功') : $this->error('保存失败');
         }
 
-        $this->assign('row', $row);
+        $this->assign(['row'=>$row, 'occupation'=>$occupation, 'vision_type'=>$vision_type, 'glasses'=>$glasses, 'frame'=>$frame]);
         return $this->fetch();
     }
 
@@ -255,7 +260,12 @@ class Users extends AdminController
         $list = $record->where(['vision_users_id'=>$row->id])->order('create_time desc')->select();
         $row->recordList = $list;
 
-        $this->assign('row', $row);
+        $occupation = $record->occupation; //职业
+        $vision_type = $record->vision_type; //配镜类型
+        $glasses = $record->glasses; //戴镜历史
+        $frame = $record->frame; //镜架材料
+
+        $this->assign(['row'=>$row, 'occupation'=>$occupation, 'vision_type'=>$vision_type, 'glasses'=>$glasses, 'frame'=>$frame]);
         return $this->fetch();
     }
 
