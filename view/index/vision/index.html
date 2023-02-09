@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>用户记录查询</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta http-equiv="refresh" content="300">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			background: url(static/index/images/vision/vision_bg.png) no-repeat fixed center;
+			background-size: 30%;
+		}
+
+		div.search {
+			padding: 10px 0;
+		}
+
+		form {
+			position: relative;
+			width: 300px;
+			margin: 0 auto;
+			margin-top: 3%;
+		}
+
+		input,
+		button {
+			border: none;
+			outline: none;
+		}
+
+		input {
+			width: 100%;
+			height: 42px;
+			padding-left: 13px;
+		}
+
+		button {
+			height: 42px;
+			width: 42px;
+			cursor: pointer;
+			position: absolute;
+		}
+
+		.bar input {
+			border: 2px solid #040c75;
+			border-radius: 5px;
+			background: transparent;
+			top: 0;
+			right: 0;
+		}
+
+		.bar button {
+			background: #040c75;
+			border-radius: 0 5px 5px 0;
+			width: 60px;
+			top: 0;
+			right: 0;
+		}
+
+		.bar button:before {
+			content: "搜索";
+			font-size: 13px;
+			color: #F9F0DA;
+		}
+
+		.bar h5 {
+			text-align: center;
+		}
+
+		.vision-users-record p {
+			padding: 5px 10px;
+			color: #09196a;
+			font-weight: bold;
+		}
+
+		.vision-users-record label {
+			margin-right: 0.7em;
+		}
+
+		.vision-record {
+			background-color: #fcfcfc;
+			padding: 5px 10px;
+		}
+
+		.record-info {
+			border: 1px dashed #09178b;
+			border-radius: 10px;
+			margin-bottom: 5px;
+			padding: 5px 10px;
+		}
+
+		.record-info table th{
+			text-align: left;
+		}
+
+		.record-info table th, .record-info table td{
+			width: 10%;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="search bar">
+		<h5>易视康配镜、测视、训练、消费记录查询</h5>
+		<form>
+			<input placeholder="请输入手机号" name="phone" type="text" value="{$phone|default=''}">
+			<button type="submit"></button>
+		</form>
+	</div>
+
+	<div class="vision-users-record">
+		<p>
+			<label>会员卡号：{$users.member|default=''}</label>
+			<label>姓名：{$users.name|default=''}</label>
+			<label>电话：{$users.phone|default=''}</label>
+			<label>年龄：{$users.age|default=''}</label>
+			<label>生日：{$users.birthday|default=''}</label>
+			<label>性别：{if $users.sex==0} 男 {else} 女 {/if}</label>
+		</p>
+		<div class="vision-record">
+			{foreach $record as $i=>$value}
+			<div class="record-info">
+				<h3>检测时间：{$value.create_time}</h3>
+				<div>
+					<label>职业：{$occupation[$value.occupation]}</label>
+					<label>配镜类型：{$vision_type[$value.vision_type]}</label>
+					<label>戴镜历史：{$glasses[$value.glasses]}</label>
+				</div>
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th>配镜处方</th>
+								<th>球镜SPH</th>
+								<th>柱镜CYL</th>
+								<th>轴位AX</th>
+								<th>瞳距MM</th>
+								<th>瞳高MM</th>
+								<th>下加光ADD</th>
+								<th>矫正视力</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>右(R)</td>
+								<td>{$value.r_sph}</td>
+								<td>{$value.r_cyl}</td>
+								<td>{$value.r_ax}</td>
+								<td>{$value.r_ipd}</td>
+								<td>{$value.r_iph}</td>
+								<td>{$value.r_add}</td>
+								<td>{$value.r_correct}</td>
+							</tr>
+							<tr>
+								<td>左(L)</td>
+								<td>{$value.l_sph}</td>
+								<td>{$value.l_cyl}</td>
+								<td>{$value.l_ax}</td>
+								<td>{$value.l_ipd}</td>
+								<td>{$value.l_iph}</td>
+								<td>{$value.l_add}</td>
+								<td>{$value.l_correct}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div>
+					<label>验光师：{$value.optometry}</label>
+					<label>配镜师：{$value.optician}</label>
+					<label>质检员：{$value.quality}</label>
+				</div>
+				<div>
+					<label>镜架材料：{$frame[$value.frame]}</label>
+					<label>名称：{$value.frame_name}</label>
+					<label>型号：{$value.model}</label>
+					<label>颜色：{$value.color}</label>
+					<label>镜片名称：{$value.lens_name}</label>
+					<label>折射率：{$value.refraction}</label>
+					<label>膜层：{$value.film}</label>
+				</div>
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th>序列</th>
+								<th>原价</th>
+								<th>单位</th>
+								<th>折扣(0无折扣)</th>
+								<th>优惠价格</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>镜片价格</td>
+								<td>{$value.lens_price}</td>
+								<td>{$value.lens_number} 副 / 对</td>
+								<td>{$value.lens_discount}</td>
+								<td>{$value.lens_discount_price}</td>
+							</tr>
+							<tr>
+								<td>镜架价格</td>
+								<td>{$value.frame_price}</td>
+								<td>{$value.frame_number} 副 / 架</td>
+								<td>{$value.frame_discount}</td>
+								<td>{$value.frame_discount_price}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div>
+					<label>总原价金额：{$value.total_price}</label>
+					<label>总实收金额：{$value.actual_price}</label>
+				</div>
+				<div>
+					<label>备注信息：{$value.remarks}</label>
+				</div>
+
+			</div>
+			{/foreach}
+		</div>
+	</div>
+</body>
+
+</html>
